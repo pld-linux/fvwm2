@@ -1,7 +1,7 @@
 Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
 Version:	2.4.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -18,7 +18,7 @@ Source5:	%{name}.wm_style
 Patch0:		%{name}-paths.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
-Requires:	wmconfig >= 0.9.9-5
+Requires:	wmconfig >= 0.9.10-6
 Requires:	m4
 Requires:	xinitrc >= 3.0
 BuildRequires:	autoconf
@@ -135,7 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc {README,AUTHORS,NEWS,ChangeLog}.gz
 %doc docs
 %dir /etc/X11/fvwm2
-%config /etc/X11/fvwm2/*
+%config(noreplace) /etc/X11/fvwm2/*
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 /etc/sysconfig/wmstyle/*.names
 %attr(755,root,root) %{_libdir}/Fvwm*
