@@ -20,7 +20,7 @@ Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
 Version:	2.5.8
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -48,8 +48,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	readline-devel >= 4.2
 %{?_with_rplay:BuildRequires:	rplay-devel}
 BuildRequires:	rpm-perlprov
-Requires:	fvwm2-icons
-Requires:	wmconfig >= 0.9.10-6
+Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
 Requires:	xinitrc >= 3.0
 Requires:	XFree86-tools
@@ -167,15 +166,18 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d \
 	$RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}} \
-	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}}
+	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}/mini}
 
 sed -e 's@^ModulePath.*@ModulePath /usr/lib/fvwm:/usr/share/fvwm@;s@^PixmapPath.*@@' \
-	-e 's@^IconPath.*@ImagePath /usr/share/pixmaps:/usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps:/usr/X11R6/include/X11/bitmaps:/usr/share/icons:/usr/share/icons/mini@' \
+	-e 's@^IconPath.*@ImagePath /usr/share/pixmaps:/usr/share/pixmaps/mini:/usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps:/usr/X11R6/include/X11/bitmaps:/usr/share/icons:/usr/share/icons/mini@' \
 	system.fvwm2rc > $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
 
 install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
 
 install icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
+
+mv $RPM_BUILD_ROOT%{_pixmapsdir}/mini-*.xpm \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/mini
 
 # Conflicts with wmmaker
 mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
@@ -223,7 +225,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files icons
 %defattr(644,root,root,755)
-%{_pixmapsdir}/*
+%{_pixmapsdir}/*.xpm
+%{_pixmapsdir}/mini/*.xpm
 
 %files perl
 %defattr(644,root,root,755)
