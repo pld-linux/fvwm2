@@ -1,13 +1,7 @@
-# This patch was created by anonymous user
-# After applying, when you click on a miniature window
-# in a pager with left mouse button, it will become focused
-# and will raise to the top
-# Clickong on miniature desktop doesn'd do anything.
-
-diff -urN fvwm/modules/FvwmPager/x_pager.c fvwm.patched/modules/FvwmPager/x_pager.c
---- fvwm/modules/FvwmPager/x_pager.c	2003-06-29 21:53:00.000000000 +0200
-+++ fvwm.patched/modules/FvwmPager/x_pager.c	2003-08-27 19:48:29.000000000 +0200
-@@ -1080,6 +1080,29 @@
+diff -urN fvwm-2.5.12.vanilla/modules/FvwmPager/x_pager.c fvwm-2.5.12/modules/FvwmPager/x_pager.c
+--- fvwm-2.5.12.vanilla/modules/FvwmPager/x_pager.c	2004-09-27 12:32:20.000000000 +0200
++++ fvwm-2.5.12/modules/FvwmPager/x_pager.c	2005-02-21 21:47:10.254445160 +0100
+@@ -1078,6 +1078,29 @@
      else if((Event->xbutton.button == 1)||
  	    (Event->xbutton.button == 2))
      {

@@ -19,12 +19,12 @@ Summary(pl):	Ulepszona wersja zarz±dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	˜…“‘’¡ÃÿŒŸ  œÀœŒŒŸ  Õ≈Œ≈ƒ÷≈“ F(?)
 Name:		fvwm2
-Version:	2.5.10
-Release:	4
+Version:	2.5.12
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
-# Source0-md5:	b3c86e2af2a4eabe692c9c849ff4b243
+# Source0-md5:	f323c59c2becb6766648b25b2111501c
 Source1:	fvwm-2.0.46.icons.tar.gz
 # Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
 Source2:	%{name}.desktop
@@ -34,10 +34,9 @@ Source4:	%{name}.RunWM
 Source5:	mozilla.xpm
 Source6:	%{name}-xsession.desktop
 Patch0:		%{name}-paths.patch
-Patch1:		FvwmIconMan.patch
-Patch2:		FvwmPager.patch
-Patch3:		%{name}-locale_names.patch
-Patch4:		%{name}-varia.patch
+Patch1:		FvwmPager.patch
+Patch2:		%{name}-locale_names.patch
+Patch3:		%{name}-varia.patch
 URL:		http://www.fvwm.org/
 %{?with_xft:BuildRequires:	xft-devel}
 BuildRequires:	autoconf
@@ -136,7 +135,6 @@ fvwm-perllib, FvwmPerl i zaleøne modu≥y.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 mv -f po/FvwmScript.sv{_SE,}.po
 mv -f po/FvwmTaskBar.sv{_SE,}.po
