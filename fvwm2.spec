@@ -8,7 +8,7 @@ Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
 Version:	2.4.3
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -131,8 +131,9 @@ CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
 	--disable-command-log \
 	--enable-multibyte \
 	--enable-shape \
-	--enable-gnome \
+	--disable-gnome \
 	--enable-sm \
+	--disable-xinerama \
 	--with-xpm-library \
 	--with-rplay-library \
 	--with-stroke-library \
