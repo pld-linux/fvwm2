@@ -1,0 +1,119 @@
+diff -uNr fvwm-2.5.10.orig/configure fvwm-2.5.10/configure
+--- fvwm-2.5.10.orig/configure	Fri Mar 19 17:32:50 2004
++++ fvwm-2.5.10/configure	Thu Sep 16 10:53:42 2004
+@@ -1573,7 +1573,7 @@
+ fi
+ 
+ # Define the identity of the package.
+- PACKAGE=fvwm
++ PACKAGE=fvwm2
+  VERSION=${version}
+ 
+ 
+@@ -9124,7 +9124,7 @@
+ 
+ 
+ ALL_LINGUAS="ar de fr sv_SE"
+-FVWM_DOMAIN="fvwm"
++FVWM_DOMAIN="fvwm2"
+ FVWMTASKBAR_DOMAIN="FvwmTaskBar"
+ FVWMSCRIPT_DOMAIN="FvwmScript"
+ ALL_DOMAINS="$FVWM_DOMAIN $FVWMTASKBAR_DOMAIN $FVWMSCRIPT_DOMAIN"
+diff -uNr fvwm-2.5.10.orig/configure.in fvwm-2.5.10/configure.in
+--- fvwm-2.5.10.orig/configure.in	Thu Sep 16 10:33:59 2004
++++ fvwm-2.5.10/configure.in	Thu Sep 16 10:53:44 2004
+@@ -68,7 +68,7 @@
+ AC_SUBST(FVWMWORKERSLISTLONG)
+ AC_SUBST(MANPAGE_PREAMBLE)
+ 
+-AM_INIT_AUTOMAKE(fvwm, ${version})
++AM_INIT_AUTOMAKE(fvwm2, ${version})
+ AM_CONFIG_HEADER(config.h)
+ 
+ dnl installation paths
+@@ -780,7 +780,7 @@
+ 
+ dnl ******* gettext
+ ALL_LINGUAS="ar de fr sv"
+-FVWM_DOMAIN="fvwm"
++FVWM_DOMAIN="fvwm2"
+ FVWMTASKBAR_DOMAIN="FvwmTaskBar"
+ FVWMSCRIPT_DOMAIN="FvwmScript"
+ ALL_DOMAINS="$FVWM_DOMAIN $FVWMTASKBAR_DOMAIN $FVWMSCRIPT_DOMAIN"
+diff -uNr fvwm-2.5.10.orig/fvwm2.menu.m4 fvwm-2.5.10/fvwm2.menu.m4
+--- fvwm-2.5.10.orig/fvwm2.menu.m4	Fri Oct 12 18:51:55 2001
++++ fvwm-2.5.10/fvwm2.menu.m4	Thu Sep 16 10:43:14 2004
+@@ -1,10 +1,13 @@
+-AddToMenu Programs
++AddToMenu fvwm2.Applications
+ + DynamicPopupAction Function MakeProgramsMenu
+ + DynamicPopdownAction Function DestroyProgramsMenu
+ 
+ AddToFunc MakeProgramsMenu
+-+ I DestroyMenu recreate Programs
+-+ I PipeRead 'wmconfig --output fvwm2 --rootmenu Programs'
++#+ I DestroyMenu recreate fvwm2.Applications
++# slooow
++#+ I PipeRead 'vfmg -c fvwm2'
++# generated
+++I PipeRead 'cat /etc/X11/fvwm2/fvwm2.menu2'
+ 
+ AddToMenu Hotlist		"Root menu"	Title
+ +	""			Nop
+@@ -12,7 +15,7 @@
+ +	"Read News"		exec xterm -title Slrn -geometry 80x30 -bg black -fg grey70 -fn 9x15latin2 -e slrn &
+ +	"Read Mail"		exec xterm -title Mutt -geometry 80x30 -fn 9x15latin2 -e mutt &
+ +	""			Nop
+-+	"Programs"		Popup Programs
+++	"Applications"		Popup fvwm2.Applications
+ +	""			Nop
+ +	"Start another WM"	Popup Managers
+ +	"Restart manager"	Restart fvwm2
+diff -uNr fvwm-2.5.10.orig/system.fvwm2rc fvwm-2.5.10/system.fvwm2rc
+--- fvwm-2.5.10.orig/system.fvwm2rc	Sun Nov 18 21:09:19 2001
++++ fvwm-2.5.10/system.fvwm2rc	Thu Sep 16 11:03:03 2004
+@@ -10,9 +10,9 @@
+ ##########################################################################
+ # PATH Setup 
+ 
+-ModulePath /usr/X11R6/lib:/usr/X11R6/share/fvwm:/usr/X11R6/lib/X11/fvwm2
+-PixmapPath /usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
+-IconPath   /usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/bitmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
++ModulePath /usr/lib:/usr/X11R6/lib:/usr/share/fvwm:/usr/lib/fvwm2
++PixmapPath /usr/share/pixmaps:/usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/:/usr/share/pixmaps/mini/
++IconPath   /usr/share/pixmaps:/usr/X11R6/include/X11/bitmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/:/usr/share/pixmaps/mini/
+ 
+ ############################################################################
+ # COLORS and FONTS
+@@ -88,7 +88,7 @@
+ Style "*" BorderWidth 4, HandleWidth 4, Icon monitor.xpm, DecorateTransient
+ 
+ Style "tkgoodstuff"	NoTitle, Sticky, StaysOnTop, NoHandles, BorderWidth 0
+-Style "Netscape"	StartsOnDesk 1
++Style "Mozilla"		StartsOnDesk 1
+ Style "peruser"		StartsOnDesk 1, ActivePlacement
+ Style "*lock"		NoTitle, Sticky, WindowListSkip
+ Style "xbiff"		NoTitle, Sticky, WindowListSkip
+@@ -253,7 +253,7 @@
+ *FvwmButtons(8x1, Frame -2, Swallow "FvwmPager" `FvwmPager 0 3`  )
+ *FvwmButtons(2x1, Title Shell, Icon Term.xpm, Action 'Exec "xterm" xterm &')
+ *FvwmButtons(2x1, Title XV, Icon xview.xpm, Action 'Exec "-" xv &')
+-*FvwmButtons(2x1, Title Netscape, Icon nscape.xpm, Action 'Exec "-" netscape &')
++*FvwmButtons(2x1, Title Mozilla, Icon mozilla.xpm, Action 'Exec "-" mozilla &')
+ *FvwmButtons(2x1, Title Mail, Icon mail2.xpm, Action 'Exec "-" xterm -title Mutt -geometry 85x35 -e mutt &' )
+ 
+ ############################################################################
+--- fvwm-2.5.10/fvwm/Makefile.am~	Thu Sep 16 11:20:26 2004
++++ fvwm-2.5.10/fvwm/Makefile.am	Thu Sep 16 11:20:26 2004
+@@ -54,10 +54,5 @@
+ 
+ install-exec-local:
+ 	@rm -f $(DESTDIR)$(bindir)/fvwm2
+-	@$(LN_S) fvwm $(DESTDIR)$(bindir)/fvwm2 || \
+-		echo "Minor warning: $(bindir)/fvwm2 symlink was not created"
++	@cp fvwm $(DESTDIR)$(bindir)/fvwm2
+ 
+-install-data-local:
+-	@rm -f $(DESTDIR)$(mandir)/man1/fvwm2.1
+-	@$(LN_S) fvwm.1 $(DESTDIR)$(mandir)/man1/fvwm2.1 || \
+-	echo "Minor warning: $(mandir)/man1/fvwm2.1 symlink was not created"
