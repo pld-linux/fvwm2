@@ -112,7 +112,7 @@ Fvwm için çeþitli minik görüntü ve simgeler.
 rm -f missing
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
 %configure \
 	--disable-package-subdirs \
