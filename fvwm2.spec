@@ -159,7 +159,7 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir},
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name} --all-name
+#%find_lang %{name} --all-name
 
 sed -e 's@^ModulePath.*@ModulePath /usr/lib/fvwm:/usr/share/fvwm@;s@^PixmapPath.*@@' \
 	-e 's@^IconPath.*@ImagePath /usr/share/pixmaps:/usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps:/usr/X11R6/include/X11/bitmaps:/usr/share/icons:/usr/share/icons/mini@' \
