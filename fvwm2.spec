@@ -35,6 +35,7 @@ Source6:	%{name}-xsession.desktop
 Patch0:		%{name}-paths.patch
 Patch1:		FvwmIconMan.patch
 Patch2:		FvwmPager.patch
+Patch3:		%{name}-locale_names.patch
 URL:		http://www.fvwm.org/
 %{?with_xft:BuildRequires:	xft-devel}
 BuildRequires:	autoconf
@@ -130,6 +131,11 @@ fvwm-perllib, FvwmPerl i zale¿ne modu³y.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+
+mv -f po/FvwmScript.sv{_SE,}.po
+mv -f po/FvwmTaskBar.sv{_SE,}.po
+mv -f po/fvwm.sv{_SE,}.po
 
 %build
 rm -f missing
