@@ -1,5 +1,13 @@
 [Desktop Entry]
 Name=Fvwm2
+Commnet=An improved version of the FVWM X-based window manager
+Commnet[de]=F(?) Virtual Window Manager
+Commnet[es]=Administrador de ventanas semejante al mwm
+Commnet[fr]=F(?) Virtual Window Manager
+Commnet[ja]=╡Чнихг FVWM - X мя╔╕╔ё╔С╔и╔╕╔ч╔м║╪╔╦╔Ц
+Commnet[tr]=YaygЩn bir pencere denetleyicisi
+Commnet[pt_BR]=Gerenciador de janelas semelhante ao mwm
+Commnet[ru]=Виртуальный оконный менеджер F(?)
 Exec=fvwm2
 TryExec=fvwm2
 
