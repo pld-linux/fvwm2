@@ -211,9 +211,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README AUTHORS NEWS docs
 %dir /etc/X11/fvwm2
-%config(noreplace) %verify(not size mtime md5) /etc/X11/fvwm2/fvwm2.menu.m4
-%config(noreplace) %verify(not size mtime md5) /etc/X11/fvwm2/system.fvwm2rc
-%ghost /etc/X11/fvwm2/fvwm2.menu2
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fvwm2.menu.m4
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/system.fvwm2rc
+%ghost %{_sysconfdir}/fvwm2.menu2
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %attr(755,root,root) %{_bindir}/[!f]*
 %attr(755,root,root) %{_bindir}/fvwm
