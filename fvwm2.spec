@@ -37,7 +37,7 @@ Patch0:		%{name}-paths.patch
 Patch1:		FvwmIconMan.patch
 Patch2:		FvwmPager.patch
 URL:		http://www.fvwm.org/
-%{!?_without_xft:BuildRequires:	Xft-devel}
+%{!?_without_xft:BuildRequires:	xft-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?_with_fribidi:BuildRequires:	fribidi-devel}
