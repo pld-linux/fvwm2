@@ -2,11 +2,11 @@
 # TODO: more updates in system.fvwm2rc (see warnings on run)
 #
 # Conditional build:
-# _with_fribidi		- with bidirectional text support
-# _with_gnome		- with gnome-libs
-# _with_rplay		- with internal sound support (through rplay)
-# _without_stroke	- without mouse strokes (gestures) support
-# _without_xft		- without Xft (1 or 2) support
+%bcond_without	stroke		# without mouse strokes (gestures) support
+%bcond_without	xft		# without Xft (1 or 2) support
+%bcond_with	fribidi		# with bidirectional text support
+%bcond_with	gnome		# with gnome-libs
+%bcond_with	rplay		# with internal sound support (through rplay)
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	An improved version of the FVWM X-based window manager
@@ -37,16 +37,16 @@ Patch0:		%{name}-paths.patch
 Patch1:		FvwmIconMan.patch
 Patch2:		FvwmPager.patch
 URL:		http://www.fvwm.org/
-%{!?_without_xft:BuildRequires:	xft-devel}
+%{?with_xft:BuildRequires:	xft-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?_with_fribidi:BuildRequires:	fribidi-devel}
-%{?_with_gnome:BuildRequires:	gnome-libs-devel}
+%{?with_fribidi:BuildRequires:	fribidi-devel}
+%{?with_gnome:BuildRequires:	gnome-libs-devel}
 BuildRequires:	gtk+-devel
 BuildRequires:	libpng-devel
-%{!?_without_stroke:BuildRequires:	libstroke-devel}
+%{?with_stroke:BuildRequires:	libstroke-devel}
 BuildRequires:	readline-devel >= 4.2
-%{?_with_rplay:BuildRequires:	rplay-devel}
+%{?with_rplay:BuildRequires:	rplay-devel}
 BuildRequires:	rpm-perlprov
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
@@ -142,14 +142,14 @@ rm -f missing
 	--disable-efence \
 	--%{!?debug:dis}%{?debug:en}able-debug-msgs \
 	--disable-command-log \
-	%{!?_with_fribidi:--disable-bidi} \
-	%{?_without_xft:--disable-xft} \
+	%{!?with_fribidi:--disable-bidi} \
+	%{!?with_xft:--disable-xft} \
 	--enable-multibyte \
 	--enable-shape \
 	--enable-sm \
-	%{?_with_gnome:--with-gnome}%{!?_with_gnome:--without-gnome} \
+	%{?with_gnome:--with-gnome}%{!?with_gnome:--without-gnome} \
 	--with-xpm-library \
-	%{!?_with_rplay:--without-rplay-library} \
+	%{!?with_rplay:--without-rplay-library} \
 	--with-stroke-library \
 	--with-ncurses-library \
 	--with-readline-library \
