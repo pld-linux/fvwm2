@@ -2,6 +2,7 @@
 # TODO: more updates in system.fvwm2rc (see warnings on run)
 #
 # Conditional build:
+# _with_debug		- without debug support
 # _with_fribidi		- with bidirectional text support
 # _with_gnome		- with gnome-libs
 # _with_rplay		- with internal sound support (through rplay)
@@ -134,7 +135,7 @@ rm -f missing
 %configure \
 	--disable-dmalloc \
 	--disable-efence \
-	--disable-debug-msgs \
+	%{!?_with_debug:--disable-debug-msgs} \
 	--disable-command-log \
 	%{!?_with_fribidi:--disable-bidi} \
 	%{?_without_xft:--disable-xft} \
