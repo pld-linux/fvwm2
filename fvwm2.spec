@@ -4,6 +4,7 @@
 # Conditional build:
 # _with_fribidi		- with bidirectional text support
 # _with_gnome		- with gnome-libs
+# _with_rplay		- with internal sound support (through rplay)
 # _without_stroke	- without mouse strokes (gestures) support
 # _without_xft		- without Xft (1 or 2) support
 #
@@ -39,6 +40,7 @@ BuildRequires:	gtk+-devel
 BuildRequires:	libpng-devel
 %{!?_without_stroke:BuildRequires:	libstroke-devel}
 BuildRequires:	readline-devel >= 4.2
+%{?_with_rplay:BuildRequires:	rplay-devel}
 BuildRequires:	rpm-perlprov
 Requires:	fvwm2-icons
 Requires:	wmconfig >= 0.9.10-6
@@ -139,15 +141,12 @@ rm -f missing
 	--enable-sm \
 	%{?_with_gnome:--with-gnome}%{!?_with_gnome:--without-gnome} \
 	--with-xpm-library \
-	--without-rplay-library \
+	%{!?_with_rplay:--without-rplay-library} \
 	--with-stroke-library \
 	--with-ncurses-library \
 	--with-readline-library \
 	--with-ncurses-library \
 	--without-termcap-library
-
-# no such library in PLD
-#	--with-rplay-library
 
 %{__make}
 
