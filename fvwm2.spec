@@ -20,7 +20,7 @@ Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
 Version:	2.5.10
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -204,7 +204,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 # generate initial menu
 [ -f /etc/sysconfig/vfmg ] && . /etc/sysconfig/vfmg
-[ $FVWM2 = yes -o $FVWM2 = 1 -o ! -f /etc/X11/fvwm2/fvwm2.menu2 ] && \
+[ "$FVWM2" = yes -o "$FVWM2" = 1 -o ! -f /etc/X11/fvwm2/fvwm2.menu2 ] && \
 	vfmg -i -f -x -c fvwm2 >/etc/X11/fvwm2/fvwm2.menu2 2>/dev/null ||:
 
 %files -f %{name}.lang
