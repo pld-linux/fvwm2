@@ -1,0 +1,11 @@
+--- fvwm-2.5.10/configure.in~	Sat Jul 24 00:59:21 2004
++++ fvwm-2.5.10/configure.in	Sat Jul 24 00:59:21 2004
+@@ -779,7 +779,7 @@
+ AC_SUBST(FVWM_PERLLIB)
+ 
+ dnl ******* gettext
+-ALL_LINGUAS="ar de fr sv_SE"
++ALL_LINGUAS="ar de fr sv"
+ FVWM_DOMAIN="fvwm"
+ FVWMTASKBAR_DOMAIN="FvwmTaskBar"
+ FVWMSCRIPT_DOMAIN="FvwmScript"
