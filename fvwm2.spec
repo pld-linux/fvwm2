@@ -74,7 +74,7 @@ Manager ¤ò¾ÊÎ¬¤·¤¿¤â¤Î¤Ç¤¹¡£)¤Ï FVWM ¤ÈÆ±¤¸ÆÃÄ§¤ò»ý¤Á ¹¹¤Ë³ÈÄ¥¤µ¤ì¤¿ X
 Window System ÍÑ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã¤Ç¤¹¡£
 
 %description -l pl
-FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od
+FVWM (za F mo¿na sobie podstawiæ co kto woli, lecz VWM pochodzi od
 pierwszych liter "Virtual Window Manager", czyli wirtualny zarz±dca
 okien) to ulepszona wersja zarz±dcy okien dla systemu X Window FVWM i
 posiadaj±ca te same cechy.
