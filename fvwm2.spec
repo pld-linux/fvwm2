@@ -179,6 +179,7 @@ install -d \
 	$RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}/mini}
 
+install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
 install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
 
 install icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
