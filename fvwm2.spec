@@ -20,6 +20,8 @@ Requires:	fvwm2-icons
 Requires:	wmconfig >= 0.9.9-5
 Requires:	m4
 Requires:	xinitrc >= 3.0
+BuildRequires:	autoconf
+BuildRequires:	automake
 Obsoletes:	fvwm95
 
 %define		_prefix		/usr/X11R6
@@ -66,6 +68,10 @@ fvwm2.
 %patch0 -p1
 
 %build
+rm missing
+aclocal
+autoconf
+automake -a -c
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
 CFLAGS="%{rpmcflags}" ./configure \
 	--prefix=%{_prefix} \
