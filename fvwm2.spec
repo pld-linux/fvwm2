@@ -12,10 +12,6 @@ Version:	2.5.0
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
-Group(de):	X11/Fenstermanager
-Group(es):	X11/Administraadores De Ventanas
-Group(fr):	X11/Gestionnaires De Fenêtres
-Group(pl):	X11/Zarz±dcy Okien
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
 Source1:	fvwm-2.0.46.icons.tar.gz
 Source2:	%{name}.desktop
@@ -88,10 +84,6 @@ Summary(pl):	Pliki graficzne u¿ywane przez zarz±dców okien FVWM i FVWM2
 Summary(ru):	ğÉËÔÏÇÒÁÍÍÙ É ÒÁÓÔÒÏ×ÙÅ ËÁÒÔÉÎËÉ ÄÌÑ fvwm2
 Summary(tr):	Fvwm için çeşitli minik görüntü ve simgeler
 Group:		X11/Window Managers
-Group(de):	X11/Fenstermanager
-Group(es):	X11/Administraadores De Ventanas
-Group(fr):	X11/Gestionnaires De Fenêtres
-Group(pl):	X11/Zarz±dcy Okien
 Obsoletes:	fvwm95-icons
 
 %description icons
