@@ -1,6 +1,6 @@
 Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
-Version:	2.4.0
+Version:	2.4.3
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
@@ -99,28 +99,33 @@ CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
 %install
 rm -rf $RPM_BUILD_ROOT
 #install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm2},%{_wmpropsdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
-install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
+install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}
+install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/icons
 install -d $RPM_BUILD_ROOT%{_datadir}/icons/mini
 
 install icons/*.xpm $RPM_BUILD_ROOT%{_datadir}/icons
-mv -f $RPM_BUILD_ROOT%{_datadir}/icons/mini.*.xpm $RPM_BUILD_ROOT%{_datadir}/icons/mini
+mv -f $RPM_BUILD_ROOT%{_datadir}/icons/mini-*.xpm $RPM_BUILD_ROOT%{_datadir}/icons/mini
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 
-# consflicts with gimp
+# conflicts with gimp
 rm -f $RPM_BUILD_ROOT%{_datadir}/icons/{folder,question}.xpm
 
-gzip -9nf README AUTHORS NEWS ChangeLog
+mv $RPM_BUILD_ROOT%{_datadir}/wm-properties{,_}
+install -d $RPM_BUILD_ROOT%{_wmpropsdir}
+mv $RPM_BUILD_ROOT{%{_datadir}/wm-properties_,%{_wmpropsdir}/fvwm2.desktop}
+
+gzip -9fn README AUTHORS NEWS
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -133,9 +138,10 @@ rm -rf $RPM_BUILD_ROOT
 %config /etc/X11/fvwm2/*
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 /etc/sysconfig/wmstyle/*.names
-%dir %{_libdir}/X11/fvwm2
-%attr(755,root,root) %{_libdir}/X11/fvwm2/*
+%attr(755,root,root) %{_libdir}/Fvwm*
 %attr(755,root,root) %{_bindir}/*
+%dir %{_datadir}/fvwm
+%{_datadir}/fvwm/*
 %{_wmpropsdir}/fvwm2.desktop
 %{_mandir}/man1/*
 
