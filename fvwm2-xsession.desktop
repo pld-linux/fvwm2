@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=XSession
+Exec=fvwm2
+TryExec=fvwm2
+Name=FVWM2
+X-AltNames=fvwm95
