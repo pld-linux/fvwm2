@@ -19,12 +19,12 @@ Summary(pl):	Ulepszona wersja zarz╠dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
-Version:	2.5.9
+Version:	2.5.10
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
-# Source0-md5:	b9b330bc4fb8464874c765e98a88d14b
+# Source0-md5:	b3c86e2af2a4eabe692c9c849ff4b243
 Source1:	fvwm-2.0.46.icons.tar.gz
 # Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
 Source2:	%{name}.desktop
