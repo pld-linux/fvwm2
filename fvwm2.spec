@@ -32,6 +32,7 @@ Source3:	%{name}-system.%{name}rc.tar.gz
 # Source3-md5:	22c1f6c5ab4bd84376daa37debd3e889
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
+Source6:	%{name}-xsession.desktop
 Patch0:		%{name}-paths.patch
 Patch1:		FvwmIconMan.patch
 URL:		http://www.fvwm.org/
@@ -158,7 +159,7 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir},%{_datadir}/locale}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir},%{_datadir}/{locale,xsessions}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -180,6 +181,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
+install %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
 # conflicts with gimp
 rm -f $RPM_BUILD_ROOT%{_datadir}/icons/{folder,question}.xpm
@@ -207,6 +209,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/fvwm/FvwmWinList
 %dir %{_datadir}/fvwm
 %{_datadir}/fvwm/[!p]*
+%{_datadir}/xsessions/%{name}.desktop
 %{_wmpropsdir}/fvwm2.desktop
 %{_mandir}/man1/[!Ff]*.1*
 %{_mandir}/man1/Fvwm[!DGPW]*.1*
