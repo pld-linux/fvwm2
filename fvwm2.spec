@@ -1,7 +1,7 @@
 Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
 Version:	2.2.4
-Release:	7
+Release:	8
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
@@ -22,6 +22,7 @@ Requires:	m4
 Requires:	xinitrc >= 3.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	readline-devel >= 4.2
 Obsoletes:	fvwm95
 
 %define		_prefix		/usr/X11R6
