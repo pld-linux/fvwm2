@@ -9,7 +9,7 @@
 # _without_xft		- without Xft (1 or 2) support
 #
 %include	/usr/lib/rpm/macros.perl
-%define snap	20031027
+%define snap	20031101
 Summary:	An improved version of the FVWM X-based window manager
 Summary(de):	F(?) Virtual Window Manager
 Summary(es):	Administrador de ventanas semejante al mwm
@@ -25,7 +25,7 @@ Release:	0.%{snap}.1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/devel/snapshots/fvwm-snap-%{snap}.tar.gz
-# Source0-md5:	d6260e16e46f778db3d36743f43d1515
+# Source0-md5:	f1139cb5c5f82097a4bbfd3e5e7d4957
 Source1:	fvwm-2.0.46.icons.tar.gz
 # Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
 Source2:	%{name}.desktop
@@ -36,6 +36,7 @@ Source5:	%{name}.wm_style
 Source6:	%{name}-xsession.desktop
 Patch0:		%{name}-paths.patch
 Patch1:		FvwmIconMan.patch
+Patch2:		FvwmPager.patch
 URL:		http://www.fvwm.org/
 %{!?_without_xft:BuildRequires:	Xft-devel}
 BuildRequires:	autoconf
@@ -131,6 +132,7 @@ fvwm-perllib, FvwmPerl i zale¿ne modu³y.
 %setup -n fvwm-snap-%{snap} -q -a1 -a3
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
