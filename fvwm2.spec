@@ -19,8 +19,8 @@ Summary(pl):	Ulepszona wersja zarz╠dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
-Version:	2.5.6
-Release:	1
+Version:	2.4.15
+Release:	0.1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -123,8 +123,8 @@ fvwm-perllib, FvwmPerl i zale©ne moduЁy.
 
 %prep
 %setup -n fvwm-%{version} -q -a1 -a3
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
+#%patch1 -p1
 
 %build
 rm -f missing
