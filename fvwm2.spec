@@ -50,6 +50,7 @@ Requires:	fvwm2-icons
 Requires:	wmconfig >= 0.9.10-6
 Requires:	m4
 Requires:	xinitrc >= 3.0
+Requires:	XFree86-tools
 Obsoletes:	fvwm95
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
