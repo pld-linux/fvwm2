@@ -9,7 +9,7 @@ Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
 Version:	2.4.3
-Release:	4
+Release:	5
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -178,7 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {README,AUTHORS,NEWS,ChangeLog}.gz
+%doc {README,AUTHORS,NEWS}.gz
 %doc docs
 %dir /etc/X11/fvwm2
 %config(noreplace) /etc/X11/fvwm2/*
