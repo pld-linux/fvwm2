@@ -1,12 +1,13 @@
 Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
-Version:	2.2
-Release:	9
+Version:	2.2.4
+Release:	6
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
 Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De Fenêtres
+URL:		http://www.fvwm.org/
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.gz
 Source1:	fvwm-2.0.46.icons.tar.gz
 Source2:	fvwm2.desktop
@@ -16,7 +17,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
 Requires:	wmconfig
 Requires:	m4
-Url:		http://fvwm.math.uh.edu/
 Obsoletes:	fvwm95
 
 %define		_prefix	/usr/X11R6
@@ -62,13 +62,16 @@ fvwm2.
 %patch0 -p1
 
 %build
+CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions" \
 CFLAGS="$RPM_OPT_FLAGS" ./configure \
 	--prefix=%{_prefix} \
 	--enable-extras \
 	--libexecdir=\${prefix}/lib/X11/fvwm2	\
 	--sysconfdir=%{_sysconfdir}/X11/fvwm2 \
 	--mandir=%{_mandir}
-%{__make} CFLAGS="$RPM_OPT_FLAGS"
+%{__make} \
+	CFLAGS="$RPM_OPT_FLAGS" \
+	CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions"
 
 %install
 rm -rf $RPM_BUILD_ROOT
