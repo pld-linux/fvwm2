@@ -19,7 +19,7 @@ Summary(pl):	Ulepszona wersja zarz±dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	˜…“‘’¡ÃÿŒŸ  œÀœŒŒŸ  Õ≈Œ≈ƒ÷≈“ F(?)
 Name:		fvwm2
-Version:	2.5.5
+Version:	2.5.6
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
@@ -30,6 +30,7 @@ Source3:	%{name}-system.%{name}rc.tar.gz
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
 Patch0:		%{name}-paths.patch
+Patch1:		FvwmIconMan.patch
 URL:		http://www.fvwm.org/
 %{!?_without_xft:BuildRequires:	Xft-devel}
 BuildRequires:	autoconf
@@ -123,6 +124,7 @@ fvwm-perllib, FvwmPerl i zaleøne modu≥y.
 %prep
 %setup -n fvwm-%{version} -q -a1 -a3
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
@@ -152,10 +154,12 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir},%{_datadir}/locale}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%find_lang %{name} --all-name
 
 sed -e 's@^ModulePath.*@ModulePath /usr/lib/fvwm:/usr/share/fvwm@;s@^PixmapPath.*@@' \
 	-e 's@^IconPath.*@ImagePath /usr/share/pixmaps:/usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps:/usr/X11R6/include/X11/bitmaps:/usr/share/icons:/usr/share/icons/mini@' \
@@ -179,7 +183,7 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/icons/{folder,question}.xpm
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README AUTHORS NEWS docs
 %dir /etc/X11/fvwm2
@@ -223,10 +227,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/fvwm/FvwmDebug
 %attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug
 %attr(755,root,root) %{_libdir}/fvwm/FvwmPerl
-%attr(755,root,root) %{_libdir}/fvwm/FvwmWindowLister
+%attr(755,root,root) %{_libdir}/fvwm/FvwmWindowMenu
 %{_datadir}/fvwm/perllib
 %{_mandir}/man1/fvwm-perllib.1*
 %{_mandir}/man1/FvwmDebug.1*
 %{_mandir}/man1/FvwmGtkDebug.1*
 %{_mandir}/man1/FvwmPerl.1*
-%{_mandir}/man1/FvwmWindowLister.1*
+%{_mandir}/man1/FvwmWindowMenu.1*
