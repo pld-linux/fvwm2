@@ -24,6 +24,7 @@ Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
+# Source0-md5:	2966bd304449604ce5fb21f2cfbb3a80
 Source1:	fvwm-2.0.46.icons.tar.gz
 Source2:	%{name}.desktop
 Source3:	%{name}-system.%{name}rc.tar.gz
