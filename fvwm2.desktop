@@ -4,10 +4,10 @@ Comment=An improved version of the FVWM X-based window manager
 Comment[de]=F(?) Virtual Window Manager
 Comment[es]=Administrador de ventanas semejante al mwm
 Comment[fr]=F(?) Virtual Window Manager
-Comment[ja]=╡Чнихг FVWM - X мя╔╕╔ё╔С╔и╔╕╔ч╔м║╪╔╦╔Ц
-Comment[tr]=YaygЩn bir pencere denetleyicisi
+Comment[ja]=Ф■╧Х┴╞Г┴┬ FVWM - X Г■╗Ц┌╕Ц┌ёЦ┐ЁЦ┐┴Ц┌╕Ц┐·Ц┐█Ц┐╪Ц┌╦Ц┐ё
+Comment[tr]=Yaygд╠n bir pencere denetleyicisi
 Comment[pt_BR]=Gerenciador de janelas semelhante ao mwm
-Comment[ru]=Виртуальный оконный менеджер F(?)
+Comment[ru]=п▓п╦я─я┌я┐п╟п╩я▄п╫я▀п╧ п╬п╨п╬п╫п╫я▀п╧ п╪п╣п╫п╣п╢п╤п╣я─ F(?)
 Exec=fvwm2
 TryExec=fvwm2
 
