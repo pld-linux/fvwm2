@@ -31,7 +31,6 @@ Source2:	%{name}.desktop
 Source3:	%{name}-system.%{name}rc.tar.gz
 # Source3-md5:	22c1f6c5ab4bd84376daa37debd3e889
 Source4:	%{name}.RunWM
-Source5:	%{name}.wm_style
 Source6:	%{name}-xsession.desktop
 Patch0:		%{name}-paths.patch
 Patch1:		FvwmIconMan.patch
@@ -185,7 +184,6 @@ mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
-install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 install %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
 %find_lang %{name} --all-name
@@ -199,7 +197,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/X11/fvwm2
 %config(noreplace) %verify(not size mtime md5) /etc/X11/fvwm2/*
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
-/etc/sysconfig/wmstyle/*.names
 %attr(755,root,root) %{_bindir}/[!f]*
 %attr(755,root,root) %{_bindir}/fvwm
 %attr(755,root,root) %{_bindir}/fvwm2
