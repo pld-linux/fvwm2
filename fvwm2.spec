@@ -163,14 +163,12 @@ mv -f $RPM_BUILD_ROOT%{_datadir}/wm-properties{,_}
 install -d $RPM_BUILD_ROOT%{_wmpropsdir}
 mv -f $RPM_BUILD_ROOT{%{_datadir}/wm-properties_,%{_wmpropsdir}/fvwm2.desktop}
 
-gzip -9fn README AUTHORS NEWS
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {README,AUTHORS,NEWS}.gz
+%doc README AUTHORS NEWS
 %doc docs
 %dir /etc/X11/fvwm2
 %config(noreplace) /etc/X11/fvwm2/*
