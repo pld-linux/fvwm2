@@ -9,7 +9,6 @@
 # _without_xft		- without Xft (1 or 2) support
 #
 %include	/usr/lib/rpm/macros.perl
-%define snap	20031101
 Summary:	An improved version of the FVWM X-based window manager
 Summary(de):	F(?) Virtual Window Manager
 Summary(es):	Administrador de ventanas semejante al mwm
@@ -21,11 +20,11 @@ Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
 Version:	2.5.8
-Release:	0.%{snap}.1
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
-Source0:	ftp://ftp.fvwm.org/pub/fvwm/devel/snapshots/fvwm-snap-%{snap}.tar.gz
-# Source0-md5:	f1139cb5c5f82097a4bbfd3e5e7d4957
+Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
+# Source0-md5:	c702d873d124a475f95c45432b8bd7d7
 Source1:	fvwm-2.0.46.icons.tar.gz
 # Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
 Source2:	%{name}.desktop
@@ -129,7 +128,7 @@ fvwm-perllib, FvwmPerl and dependent modules.
 fvwm-perllib, FvwmPerl i zale©ne moduЁy.
 
 %prep
-%setup -n fvwm-snap-%{snap} -q -a1 -a3
+%setup -n fvwm-%{version} -q -a1 -a3
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
