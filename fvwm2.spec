@@ -4,6 +4,7 @@ Summary(es):	Administrador de ventanas semejante al mwm
 Summary(fr):	F(?) Virtual Window Manager
 Summary(ja):	╡Чнихг FVWM - X мя╔╕╔ё╔С╔и╔╕╔ч╔м║╪╔╦╔Ц
 Summary(tr):	YaygЩn bir pencere denetleyicisi
+Summary(pl):	Ulepszona wersja zarz╠dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
@@ -15,7 +16,6 @@ Group(de):	X11/Fenstermanager
 Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De FenЙtres
 Group(pl):	X11/Zarz╠dcy Okien
-URL:		http://www.fvwm.org/
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.gz
 Source1:	fvwm-2.0.46.icons.tar.gz
 Source2:	%{name}.desktop
@@ -23,6 +23,7 @@ Source3:	%{name}-system.%{name}rc.tar.gz
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
 Patch0:		%{name}-paths.patch
+URL:		http://www.fvwm.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
 Requires:	wmconfig >= 0.9.10-6
@@ -83,6 +84,7 @@ fvwm2 - это версия популярного "Feeble Virtual Window Manager".
 Summary:	Graphic files used by the FVWM and FVWM2 window managers
 Summary(de):	Symbole und Pixmaps fЭr fvwm
 Summary(fr):	IcТnes et pixmaps pour fvwm
+Summary(pl):	Pliki graficzne u©ywane przez zarz╠dcСw okien FVWM i FVWM2
 Summary(ru):	Пиктограммы и растровые картинки для fvwm2
 Summary(tr):	Fvwm iГin ГeЧitli minik gЖrЭntЭ ve simgeler
 Group:		X11/Window Managers
@@ -93,25 +95,21 @@ Group(pl):	X11/Zarz╠dcy Okien
 Obsoletes:	fvwm95-icons
 
 %description icons
-The fvwm2-icons package contains icons, bitmaps and pixmaps used by
-the FVWM and FVWM2 X Window System window managers.
-
-You'll need to install fvwm2-icons if you are installing fvwm and/or
-fvwm2.
-
-%description icons
 This package contains icons, bitmaps and pixmaps for fvwm and fvwm2.
 
-%description -l de icons
+%description icons -l de
 Dieses Paket enthДlt Symbole, Bitmaps und Pixmaps fЭr fvwm und fvwm2.
 
-%description -l fr icons
+%description icons -l fr
 Ce package contient des icones, bitmaps et pixmaps pour fvwm et fvwm2.
+
+%description icons -l pl
+Ten pakiet zawiera ikony, bitmapy i pixmapy dla fvwm i fvwm2.
 
 %description icons -l ru
 Этот пакет содержит пиктограммы и прочие картинки для fvwm2.
 
-%description -l tr icons
+%description icons -l tr
 Fvwm iГin ГeЧitli minik gЖrЭntЭ ve simgeler.
 
 %prep
@@ -119,7 +117,7 @@ Fvwm iГin ГeЧitli minik gЖrЭntЭ ve simgeler.
 %patch0 -p1
 
 %build
-rm missing
+rm -f missing
 aclocal
 autoconf
 automake -a -c
@@ -169,9 +167,9 @@ install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 # conflicts with gimp
 rm -f $RPM_BUILD_ROOT%{_datadir}/icons/{folder,question}.xpm
 
-mv $RPM_BUILD_ROOT%{_datadir}/wm-properties{,_}
+mv -f $RPM_BUILD_ROOT%{_datadir}/wm-properties{,_}
 install -d $RPM_BUILD_ROOT%{_wmpropsdir}
-mv $RPM_BUILD_ROOT{%{_datadir}/wm-properties_,%{_wmpropsdir}/fvwm2.desktop}
+mv -f $RPM_BUILD_ROOT{%{_datadir}/wm-properties_,%{_wmpropsdir}/fvwm2.desktop}
 
 gzip -9fn README AUTHORS NEWS
 
