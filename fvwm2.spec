@@ -175,8 +175,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_mandir}/man1/fvwm{,2}.1
-
 install -d \
 	$RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}/mini}
@@ -217,17 +215,18 @@ rm -rf $RPM_BUILD_ROOT
 %ghost /etc/X11/fvwm2/fvwm2.menu2
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %attr(755,root,root) %{_bindir}/[!f]*
+%attr(755,root,root) %{_bindir}/fvwm
 %attr(755,root,root) %{_bindir}/fvwm2
 %attr(755,root,root) %{_bindir}/fvwm-[!p]*
-%dir %{_libdir}/fvwm2
-%attr(755,root,root) %{_libdir}/fvwm2/Fvwm[!DGPW]*
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmD[!e]*
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmGtk
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmP[!e]*
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmW[!i]*
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmWinList
-%dir %{_datadir}/fvwm2
-%{_datadir}/fvwm2/[!p]*
+%dir %{_libdir}/fvwm
+%attr(755,root,root) %{_libdir}/fvwm/Fvwm[!DGPW]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmD[!e]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmGtk
+%attr(755,root,root) %{_libdir}/fvwm/FvwmP[!e]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmW[!i]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmWinList
+%dir %{_datadir}/fvwm
+%{_datadir}/fvwm/[!p]*
 %{_datadir}/xsessions/%{name}.desktop
 %{_wmpropsdir}/fvwm2.desktop
 %{_mandir}/man1/[!Ff]*.1*
@@ -236,7 +235,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/FvwmP[!e]*.1*
 %{_mandir}/man1/FvwmW[!i]*.1*
 %{_mandir}/man1/FvwmWinList.1*
-%{_mandir}/man1/fvwm2.1*
+%{_mandir}/man1/fvwm.1*
 %{_mandir}/man1/fvwm-[!p]*.1*
 
 %files icons
@@ -247,11 +246,11 @@ rm -rf $RPM_BUILD_ROOT
 %files perl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fvwm-perllib
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmDebug
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmGtkDebug
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmPerl
-%attr(755,root,root) %{_libdir}/fvwm2/FvwmWindowMenu
-%{_datadir}/fvwm2/perllib
+%attr(755,root,root) %{_libdir}/fvwm/FvwmDebug
+%attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug
+%attr(755,root,root) %{_libdir}/fvwm/FvwmPerl
+%attr(755,root,root) %{_libdir}/fvwm/FvwmWindowMenu
+%{_datadir}/fvwm/perllib
 %{_mandir}/man1/fvwm-perllib.1*
 %{_mandir}/man1/FvwmDebug.1*
 %{_mandir}/man1/FvwmGtkDebug.1*

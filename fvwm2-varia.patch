@@ -1,45 +1,3 @@
-diff -uNr fvwm-2.5.10.orig/configure fvwm-2.5.10/configure
---- fvwm-2.5.10.orig/configure	Fri Mar 19 17:32:50 2004
-+++ fvwm-2.5.10/configure	Thu Sep 16 10:53:42 2004
-@@ -1573,7 +1573,7 @@
- fi
- 
- # Define the identity of the package.
-- PACKAGE=fvwm
-+ PACKAGE=fvwm2
-  VERSION=${version}
- 
- 
-@@ -9124,7 +9124,7 @@
- 
- 
- ALL_LINGUAS="ar de fr sv_SE"
--FVWM_DOMAIN="fvwm"
-+FVWM_DOMAIN="fvwm2"
- FVWMTASKBAR_DOMAIN="FvwmTaskBar"
- FVWMSCRIPT_DOMAIN="FvwmScript"
- ALL_DOMAINS="$FVWM_DOMAIN $FVWMTASKBAR_DOMAIN $FVWMSCRIPT_DOMAIN"
-diff -uNr fvwm-2.5.10.orig/configure.in fvwm-2.5.10/configure.in
---- fvwm-2.5.10.orig/configure.in	Thu Sep 16 10:33:59 2004
-+++ fvwm-2.5.10/configure.in	Thu Sep 16 10:53:44 2004
-@@ -68,7 +68,7 @@
- AC_SUBST(FVWMWORKERSLISTLONG)
- AC_SUBST(MANPAGE_PREAMBLE)
- 
--AM_INIT_AUTOMAKE(fvwm, ${version})
-+AM_INIT_AUTOMAKE(fvwm2, ${version})
- AM_CONFIG_HEADER(config.h)
- 
- dnl installation paths
-@@ -780,7 +780,7 @@
- 
- dnl ******* gettext
- ALL_LINGUAS="ar de fr sv"
--FVWM_DOMAIN="fvwm"
-+FVWM_DOMAIN="fvwm2"
- FVWMTASKBAR_DOMAIN="FvwmTaskBar"
- FVWMSCRIPT_DOMAIN="FvwmScript"
- ALL_DOMAINS="$FVWM_DOMAIN $FVWMTASKBAR_DOMAIN $FVWMSCRIPT_DOMAIN"
 diff -uNr fvwm-2.5.10.orig/fvwm2.menu.m4 fvwm-2.5.10/fvwm2.menu.m4
 --- fvwm-2.5.10.orig/fvwm2.menu.m4	Fri Oct 12 18:51:55 2001
 +++ fvwm-2.5.10/fvwm2.menu.m4	Thu Sep 16 10:43:14 2004
@@ -79,7 +37,7 @@ diff -uNr fvwm-2.5.10.orig/system.fvwm2rc fvwm-2.5.10/system.fvwm2rc
 -ModulePath /usr/X11R6/lib:/usr/X11R6/share/fvwm:/usr/X11R6/lib/X11/fvwm2
 -PixmapPath /usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
 -IconPath   /usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/bitmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
-+ModulePath /usr/lib:/usr/X11R6/lib:/usr/share/fvwm:/usr/lib/fvwm2
++ModulePath /usr/lib:/usr/X11R6/lib:/usr/share/fvwm:/usr/lib/fvwm
 +PixmapPath /usr/share/pixmaps:/usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/:/usr/share/pixmaps/mini/
 +IconPath   /usr/share/pixmaps:/usr/X11R6/include/X11/bitmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/:/usr/share/pixmaps/mini/
  
@@ -103,17 +61,3 @@ diff -uNr fvwm-2.5.10.orig/system.fvwm2rc fvwm-2.5.10/system.fvwm2rc
  *FvwmButtons(2x1, Title Mail, Icon mail2.xpm, Action 'Exec "-" xterm -title Mutt -geometry 85x35 -e mutt &' )
  
  ############################################################################
---- fvwm-2.5.10/fvwm/Makefile.am~	Thu Sep 16 11:20:26 2004
-+++ fvwm-2.5.10/fvwm/Makefile.am	Thu Sep 16 11:20:26 2004
-@@ -54,10 +54,5 @@
- 
- install-exec-local:
- 	@rm -f $(DESTDIR)$(bindir)/fvwm2
--	@$(LN_S) fvwm $(DESTDIR)$(bindir)/fvwm2 || \
--		echo "Minor warning: $(bindir)/fvwm2 symlink was not created"
-+	@cp fvwm $(DESTDIR)$(bindir)/fvwm2
- 
--install-data-local:
--	@rm -f $(DESTDIR)$(mandir)/man1/fvwm2.1
--	@$(LN_S) fvwm.1 $(DESTDIR)$(mandir)/man1/fvwm2.1 || \
--	echo "Minor warning: $(mandir)/man1/fvwm2.1 symlink was not created"
