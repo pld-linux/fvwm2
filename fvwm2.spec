@@ -161,32 +161,31 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir},%{_datadir}/{locale,xsessions}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name} --all-name
+install -d \
+	$RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}} \
+	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}}
 
 sed -e 's@^ModulePath.*@ModulePath /usr/lib/fvwm:/usr/share/fvwm@;s@^PixmapPath.*@@' \
 	-e 's@^IconPath.*@ImagePath /usr/share/pixmaps:/usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps:/usr/X11R6/include/X11/bitmaps:/usr/share/icons:/usr/share/icons/mini@' \
 	system.fvwm2rc > $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
+
 install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/icons
-install -d $RPM_BUILD_ROOT%{_datadir}/icons/mini
+install icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
 
-install icons/*.xpm $RPM_BUILD_ROOT%{_datadir}/icons
-mv -f $RPM_BUILD_ROOT%{_datadir}/icons/mini-*.xpm $RPM_BUILD_ROOT%{_datadir}/icons/mini
+# Conflicts with wmmaker
+mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
-
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 install %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
-# conflicts with gimp
-rm -f $RPM_BUILD_ROOT%{_datadir}/icons/{folder,question}.xpm
+%find_lang %{name} --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -224,8 +223,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files icons
 %defattr(644,root,root,755)
-%{_datadir}/icons/*.xpm
-%{_datadir}/icons/mini/*.xpm
+%{_pixmapsdir}/*
 
 %files perl
 %defattr(644,root,root,755)
