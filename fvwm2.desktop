@@ -5,3 +5,4 @@ TryExec=fvwm2
 
 [Window Manager]
 SessionManaged=false
+# vi: encoding=utf-8
