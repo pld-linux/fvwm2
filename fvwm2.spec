@@ -9,7 +9,7 @@ Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
 Version:	2.5.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -19,6 +19,7 @@ Source3:	%{name}-system.%{name}rc.tar.gz
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
 Patch0:		%{name}-paths.patch
+Patch1:		%{name}-ac.patch
 URL:		http://www.fvwm.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
@@ -95,12 +96,13 @@ Fvwm iГin ГeЧitli minik gЖrЭntЭ ve simgeler.
 %prep
 %setup -n fvwm-%{version} -q -a1 -a3
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
 %{__aclocal}
-%{__autoconf}
 %{__automake}
+%{__autoconf}
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
 %configure \
 	--disable-package-subdirs \
@@ -116,10 +118,12 @@ CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
 	--with-xpm-library \
 	--with-rplay-library \
 	--with-stroke-library \
+	--with-ncurses-library \
 	--with-readline-library \
 	--with-ncurses-library \
 	--with-gnome
 
+touch *
 %{__make}
 
 %install
