@@ -24,6 +24,15 @@ FVWM.
 Install the fvwm2 package if you'd like to use the FVWM2 window manager.
 If you install fvwm2, you'll also need to install fvwm2-icons.
 
+%description -l pl
+FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od pierwszych
+liter "Virtual Window Manager", czyli wirtualnego mened¿era okien) to ulepszona
+wersja mened¿era okien dla systemu X Window FVWM i posiada te same cechy.
+
+Nale¿y zainstalowaæ pakiet fvwm2 jesli chce siê uzywaæ mened¿era okien FVWM2.
+Instaluj±c fvwm2 nalezy równiez zainstalowaæ pakiet fvwm2-icons.
+
+
 %package icons
 Summary:	Graphic files used by the FVWM and FVWM2 window managers.
 Group:		User Interface/Desktops
