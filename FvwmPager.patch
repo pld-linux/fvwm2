@@ -1,0 +1,39 @@
+# This patch was created by anonymous user
+# After applying, when you click on a miniature window
+# in a pager with left mouse button, it will become focused
+# and will raise to the top
+# Clickong on miniature desktop doesn'd do anything.
+
+diff -urN fvwm/modules/FvwmPager/x_pager.c fvwm.patched/modules/FvwmPager/x_pager.c
+--- fvwm/modules/FvwmPager/x_pager.c	2003-06-29 21:53:00.000000000 +0200
++++ fvwm.patched/modules/FvwmPager/x_pager.c	2003-08-27 19:48:29.000000000 +0200
+@@ -1080,6 +1080,29 @@
+     else if((Event->xbutton.button == 1)||
+ 	    (Event->xbutton.button == 2))
+     {
++		if( (Event->xbutton.button == 1) &&
++		  (Event->xbutton.subwindow != None) )
++		{
++		  PagerWindow *t;
++
++		  t = Start;
++		  while ((t != NULL)&&(t->PagerView != Event->xbutton.subwindow))
++		    t= t->next;
++
++		  if(t==NULL)
++		  {
++		    t = Start;
++		    while ((t != NULL)&&(t->IconView != Event->xbutton.subwindow))
++		      t= t->next;
++		  }
++
++		  if( t )
++		  {
++		    SendText(fd, "Silent Raise", t->w);
++		    SendText(fd, "Silent Focus", t->w);
++		  }
++		}
++
+       for(i=0;i<ndesks;i++)
+       {
+ 	if(Event->xany.window == Desks[i].w)
