@@ -109,17 +109,17 @@ Ten pakiet zawiera ikony, bitmapy i pixmapy dla fvwm i fvwm2.
 %description icons -l tr
 Fvwm için çeþitli minik görüntü ve simgeler.
 
-%package perl
-Summary:	fvwm-perllib, FvwmPerl and dependent modules
-Summary(pl):	fvwm-perllib, FvwmPerl i zale¿ne modu³y
-Group:		X11/Window Managers/Tools
-Requires:	%{name} = %{version}
+#%package perl
+#Summary:	fvwm-perllib, FvwmPerl and dependent modules
+#Summary(pl):	fvwm-perllib, FvwmPerl i zale¿ne modu³y
+#Group:		X11/Window Managers/Tools
+#Requires:	%{name} = %{version}
 
-%description perl
-fvwm-perllib, FvwmPerl and dependent modules.
+#%description perl
+#fvwm-perllib, FvwmPerl and dependent modules.
 
-%description perl -l pl
-fvwm-perllib, FvwmPerl i zale¿ne modu³y.
+#%description perl -l pl
+#fvwm-perllib, FvwmPerl i zale¿ne modu³y.
 
 %prep
 %setup -n fvwm-%{version} -q -a1 -a3
@@ -221,16 +221,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/icons/*.xpm
 %{_datadir}/icons/mini/*.xpm
 
-%files perl
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/fvwm-perllib
-%attr(755,root,root) %{_libdir}/fvwm/FvwmDebug
-%attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug
-%attr(755,root,root) %{_libdir}/fvwm/FvwmPerl
-%attr(755,root,root) %{_libdir}/fvwm/FvwmWindowMenu
-%{_datadir}/fvwm/perllib
-%{_mandir}/man1/fvwm-perllib.1*
-%{_mandir}/man1/FvwmDebug.1*
-%{_mandir}/man1/FvwmGtkDebug.1*
-%{_mandir}/man1/FvwmPerl.1*
-%{_mandir}/man1/FvwmWindowMenu.1*
+#%files perl
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/fvwm-perllib
+#%attr(755,root,root) %{_libdir}/fvwm/FvwmDebug
+#%attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug
+#%attr(755,root,root) %{_libdir}/fvwm/FvwmPerl
+#%attr(755,root,root) %{_libdir}/fvwm/FvwmWindowMenu
+#%{_datadir}/fvwm/perllib
+#%{_mandir}/man1/fvwm-perllib.1*
+#%{_mandir}/man1/FvwmDebug.1*
+#%{_mandir}/man1/FvwmGtkDebug.1*
+#%{_mandir}/man1/FvwmPerl.1*
+#%{_mandir}/man1/FvwmWindowMenu.1*
