@@ -22,8 +22,9 @@ Requires:	m4
 Requires:	xinitrc >= 3.0
 Obsoletes:	fvwm95
 
-%define		_prefix	/usr/X11R6
-%define		_mandir	/usr/X11R6/man
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
+%define		_wmpropsdir	%{_datadir}/wm-properties
 
 %description
 FVWM2 (the F stands for whatever you want, but the VWM stands for
@@ -65,21 +66,20 @@ fvwm2.
 %patch0 -p1
 
 %build
-CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions" \
-CFLAGS="$RPM_OPT_FLAGS" ./configure \
+CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
+CFLAGS="%{rpmcflags}" ./configure \
 	--prefix=%{_prefix} \
 	--enable-extras \
 	--libexecdir=\${prefix}/lib/X11/fvwm2	\
 	--sysconfdir=%{_sysconfdir}/X11/fvwm2 \
 	--mandir=%{_mandir}
 %{__make} \
-	CFLAGS="$RPM_OPT_FLAGS" \
-	CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions"
+	CFLAGS="%{rpmcflags}" \
+	CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm2} \
-	$RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm2},%{_wmpropsdir}}
 
 %{__make} install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
@@ -93,9 +93,9 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/icons
 install -d $RPM_BUILD_ROOT%{_datadir}/icons/mini
 
 install icons/*.xpm $RPM_BUILD_ROOT%{_datadir}/icons
-mv $RPM_BUILD_ROOT%{_datadir}/icons/mini.*.xpm $RPM_BUILD_ROOT%{_datadir}/icons/mini
+mv -f $RPM_BUILD_ROOT%{_datadir}/icons/mini.*.xpm $RPM_BUILD_ROOT%{_datadir}/icons/mini
 
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
@@ -103,10 +103,7 @@ install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 # consflicts with gimp
 rm -f $RPM_BUILD_ROOT/usr/X11R6/share/icons/{folder,question}.xpm
 
-strip --strip-unneeded $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/X11/fvwm2}/* || :
-
-gzip -9nf README AUTHORS NEWS ChangeLog \
-	$RPM_BUILD_ROOT%{_mandir}/man1/*
+gzip -9nf README AUTHORS NEWS ChangeLog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -122,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/X11/fvwm2
 %attr(755,root,root) %{_libdir}/X11/fvwm2/*
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/gnome/wm-properties/fvwm2.desktop
+%{_wmpropsdir}/fvwm2.desktop
 %{_mandir}/man1/*
 
 %files icons
