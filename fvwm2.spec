@@ -1,20 +1,21 @@
 Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
-Version:	2.2.4
-Release:	8
+Version:	2.4.0
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
-Group(pl):	X11/Zarz±dcy Okien
+Group(de):	X11/Fenstermanager
 Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De Fenêtres
+Group(pl):	X11/Zarz±dcy Okien
 URL:		http://www.fvwm.org/
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.gz
 Source1:	fvwm-2.0.46.icons.tar.gz
-Source2:	fvwm2.desktop
-Source3:	fvwm2-system.fvwm2rc.tar.gz
+Source2:	%{name}.desktop
+Source3:	%{name}-system.fvwm2rc.tar.gz
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
-Patch0:		fvwm2-paths.patch
+Patch0:		%{name}-paths.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
 Requires:	wmconfig >= 0.9.9-5
@@ -27,6 +28,7 @@ Obsoletes:	fvwm95
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_sysconfdir	/etc/X11/fvwm2
 %define		_wmpropsdir	%{_datadir}/wm-properties
 
 %description
@@ -52,9 +54,10 @@ fvwm2-icons.
 %package icons
 Summary:	Graphic files used by the FVWM and FVWM2 window managers
 Group:		X11/Window Managers
-Group(pl):	X11/Zarz±dcy Okien
+Group(de):	X11/Fenstermanager
 Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De Fenêtres
+Group(pl):	X11/Zarz±dcy Okien
 Obsoletes:	fvwm95-icons
 
 %description icons
@@ -74,24 +77,31 @@ aclocal
 autoconf
 automake -a -c
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
-CFLAGS="%{rpmcflags}" ./configure \
-	--prefix=%{_prefix} \
-	--enable-extras \
-	--libexecdir=\${prefix}/lib/X11/fvwm2	\
-	--sysconfdir=%{_sysconfdir}/X11/fvwm2 \
-	--mandir=%{_mandir}
-%{__make} \
-	CFLAGS="%{rpmcflags}" \
-	CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
+%configure \
+	--disable-package-subdirs \
+	--disable-dmalloc \
+	--disable-efence \
+	--disable-debug-msgs \
+	--disable-command-log \
+	--enable-multibyte \
+	--enable-shape \
+	--enable-gnome \
+	--enable-sm \
+	--with-xpm-library \
+	--with-rplay-library \
+	--with-stroke-library \
+	--with-readline-library \
+	--with-ncurses-library \
+	--with-gnome
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm2},%{_wmpropsdir}}
+#install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm2},%{_wmpropsdir}}
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT%{_prefix} \
-	sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2 \
-	mandir=$RPM_BUILD_ROOT%{_mandir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
 install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
@@ -108,7 +118,7 @@ install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 
 # consflicts with gimp
-rm -f $RPM_BUILD_ROOT/usr/X11R6/share/icons/{folder,question}.xpm
+rm -f $RPM_BUILD_ROOT%{_datadir}/icons/{folder,question}.xpm
 
 gzip -9nf README AUTHORS NEWS ChangeLog
 
