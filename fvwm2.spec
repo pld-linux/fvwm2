@@ -20,7 +20,7 @@ Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	Виртуальный оконный менеджер F(?)
 Name:		fvwm2
 Version:	2.5.10
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
