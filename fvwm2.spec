@@ -20,7 +20,7 @@ Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	÷ÉÒÔÕÁÌØÎÙÊ ÏËÏÎÎÙÊ ÍÅÎÅÄÖÅÒ F(?)
 Name:		fvwm2
 Version:	2.5.10
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -31,11 +31,13 @@ Source2:	%{name}.desktop
 Source3:	%{name}-system.%{name}rc.tar.gz
 # Source3-md5:	22c1f6c5ab4bd84376daa37debd3e889
 Source4:	%{name}.RunWM
+Source5:	mozilla.xpm
 Source6:	%{name}-xsession.desktop
 Patch0:		%{name}-paths.patch
 Patch1:		FvwmIconMan.patch
 Patch2:		FvwmPager.patch
 Patch3:		%{name}-locale_names.patch
+Patch4:		%{name}-varia.patch
 URL:		http://www.fvwm.org/
 %{?with_xft:BuildRequires:	xft-devel}
 BuildRequires:	autoconf
@@ -48,8 +50,10 @@ BuildRequires:	libpng-devel
 BuildRequires:	readline-devel >= 4.2
 %{?with_rplay:BuildRequires:	rplay-devel}
 BuildRequires:	rpm-perlprov
+Requires(post):	vfmg >= 0.9.18-2
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
+Requires:	vfmg >= 0.9.18-2
 Requires:	xinitrc-ng
 Requires:	XFree86-tools
 Obsoletes:	fvwm95
@@ -132,6 +136,7 @@ fvwm-perllib, FvwmPerl i zale¿ne modu³y.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 mv -f po/FvwmScript.sv{_SE,}.po
 mv -f po/FvwmTaskBar.sv{_SE,}.po
@@ -174,10 +179,6 @@ install -d \
 	$RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}/mini}
 
-sed -e 's@^ModulePath.*@ModulePath /usr/lib/fvwm:/usr/share/fvwm@;s@^PixmapPath.*@@' \
-	-e 's@^IconPath.*@ImagePath /usr/share/pixmaps:/usr/share/pixmaps/mini:/usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps:/usr/X11R6/include/X11/bitmaps:/usr/share/icons:/usr/share/icons/mini@' \
-	system.fvwm2rc > $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
-
 install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
 
 install icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -190,32 +191,41 @@ mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
+install %{SOURCE5} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
+touch $RPM_BUILD_ROOT/etc/X11/fvwm2/fvwm2.menu2
 
 %find_lang %{name} --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+# generate initial menu
+[ -f /etc/sysconfig/vfmg ] && . /etc/sysconfig/vfmg
+[ $FVWM2 = yes -o $FVWM2 = 1 -o ! -f /etc/X11/fvwm2/fvwm2.menu2 ] && \
+	vfmg -i -f -x -c fvwm2 >/etc/X11/fvwm2/fvwm2.menu2 2>/dev/null ||:
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README AUTHORS NEWS docs
 %dir /etc/X11/fvwm2
-%config(noreplace) %verify(not size mtime md5) /etc/X11/fvwm2/*
+%config(noreplace) %verify(not size mtime md5) /etc/X11/fvwm2/fvwm2.menu.m4
+%config(noreplace) %verify(not size mtime md5) /etc/X11/fvwm2/system.fvwm2rc
+%ghost /etc/X11/fvwm2/fvwm2.menu2
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %attr(755,root,root) %{_bindir}/[!f]*
-%attr(755,root,root) %{_bindir}/fvwm
 %attr(755,root,root) %{_bindir}/fvwm2
 %attr(755,root,root) %{_bindir}/fvwm-[!p]*
-%dir %{_libdir}/fvwm
-%attr(755,root,root) %{_libdir}/fvwm/Fvwm[!DGPW]*
-%attr(755,root,root) %{_libdir}/fvwm/FvwmD[!e]*
-%attr(755,root,root) %{_libdir}/fvwm/FvwmGtk
-%attr(755,root,root) %{_libdir}/fvwm/FvwmP[!e]*
-%attr(755,root,root) %{_libdir}/fvwm/FvwmW[!i]*
-%attr(755,root,root) %{_libdir}/fvwm/FvwmWinList
-%dir %{_datadir}/fvwm
-%{_datadir}/fvwm/[!p]*
+%dir %{_libdir}/fvwm2
+%attr(755,root,root) %{_libdir}/fvwm2/Fvwm[!DGPW]*
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmD[!e]*
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmGtk
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmP[!e]*
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmW[!i]*
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmWinList
+%dir %{_datadir}/fvwm2
+%{_datadir}/fvwm2/[!p]*
 %{_datadir}/xsessions/%{name}.desktop
 %{_wmpropsdir}/fvwm2.desktop
 %{_mandir}/man1/[!Ff]*.1*
@@ -235,11 +245,11 @@ rm -rf $RPM_BUILD_ROOT
 %files perl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fvwm-perllib
-%attr(755,root,root) %{_libdir}/fvwm/FvwmDebug
-%attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug
-%attr(755,root,root) %{_libdir}/fvwm/FvwmPerl
-%attr(755,root,root) %{_libdir}/fvwm/FvwmWindowMenu
-%{_datadir}/fvwm/perllib
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmDebug
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmGtkDebug
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmPerl
+%attr(755,root,root) %{_libdir}/fvwm2/FvwmWindowMenu
+%{_datadir}/fvwm2/perllib
 %{_mandir}/man1/fvwm-perllib.1*
 %{_mandir}/man1/FvwmDebug.1*
 %{_mandir}/man1/FvwmGtkDebug.1*
