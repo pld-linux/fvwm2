@@ -4,5 +4,7 @@ Type=XSession
 Exec=fvwm2
 TryExec=fvwm2
 Name=FVWM2
+Comment=Improved version of the FVWM window manager
+Comment[pl]=Unowocześniona wersja zarządcy okien FVWM
 X-AltNames=fvwm95
 # vi: encoding=utf-8
