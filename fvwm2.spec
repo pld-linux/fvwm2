@@ -26,8 +26,10 @@ Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
 # Source0-md5:	2966bd304449604ce5fb21f2cfbb3a80
 Source1:	fvwm-2.0.46.icons.tar.gz
+# Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
 Source2:	%{name}.desktop
 Source3:	%{name}-system.%{name}rc.tar.gz
+# Source3-md5:	22c1f6c5ab4bd84376daa37debd3e889
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
 Patch0:		%{name}-paths.patch
