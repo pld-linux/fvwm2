@@ -1,7 +1,7 @@
 Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
 Version:	2.2
-Release:	6
+Release:	8
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
@@ -9,9 +9,12 @@ Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De Fenêtres
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.gz
 Source1:	fvwm-2.0.46.icons.tar.gz
-Patch0:		fvwm-2.2-redhat.patch
+Source2:	fvwm2.desktop
+Source3:	fvwm2-system.fvwm2rc.tar.gz
+Patch0:		fvwm2-paths.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
+Requires:	wmconfig
 Url:		http://fvwm.math.uh.edu/
 Obsoletes:	fvwm95
 
@@ -54,7 +57,7 @@ You'll need to install fvwm2-icons if you are installing fvwm and/or
 fvwm2.
 
 %prep
-%setup -n fvwm-%{version} -q
+%setup -n fvwm-%{version} -q -a1 -a3
 %patch0 -p1
 
 %build
@@ -64,24 +67,31 @@ CFLAGS="$RPM_OPT_FLAGS" ./configure \
 	--libexecdir=\${prefix}/lib/X11/fvwm2	\
 	--sysconfdir=%{_sysconfdir}/X11/fvwm2 \
 	--mandir=%{_mandir}
-%{__make} 
+%{__make} CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2 \
+	$RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
 %{__make} install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2 \
-	mandir=$RPM_BUILD_ROOT%{_mandir} \
-	INSTALL_PROGRAM="%{_bindir}/install -c -s"
+	mandir=$RPM_BUILD_ROOT%{_mandir}
 
-install sample.fvwmrc/system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
+install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
+install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
+
 rm -rf $RPM_BUILD_ROOT%{_datadir}/icons
 install -d $RPM_BUILD_ROOT%{_datadir}/icons/mini
 
 install icons/*.xpm $RPM_BUILD_ROOT%{_datadir}/icons
 mv $RPM_BUILD_ROOT%{_datadir}/icons/mini.*.xpm $RPM_BUILD_ROOT%{_datadir}/icons/mini
+
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+
+# consflicts with gimp
+rm -f $RPM_BUILD_ROOT/usr/X11R6/share/icons/{folder,question}.xpm
 
 strip --strip-unneeded $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/X11/fvwm2}/* || :
 
@@ -100,6 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/X11/fvwm2
 %attr(755,root,root) %{_libdir}/X11/fvwm2/*
 %attr(755,root,root) %{_bindir}/*
+%{_datadir}/gnome/wm-properties/fvwm2.desktop
 %{_mandir}/man1/*
 
 %files icons
