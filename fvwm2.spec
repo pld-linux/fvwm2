@@ -1,7 +1,7 @@
 Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
 Version:	2.2.4
-Release:	6
+Release:	7
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
@@ -12,11 +12,14 @@ Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.gz
 Source1:	fvwm-2.0.46.icons.tar.gz
 Source2:	fvwm2.desktop
 Source3:	fvwm2-system.fvwm2rc.tar.gz
+Source4:	%{name}.RunWM
+Source5:	%{name}.wm_style
 Patch0:		fvwm2-paths.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
-Requires:	wmconfig
+Requires:	wmconfig >= 0.9.9-5
 Requires:	m4
+Requires:	xinitrc >= 3.0
 Obsoletes:	fvwm95
 
 %define		_prefix	/usr/X11R6
@@ -75,7 +78,7 @@ CFLAGS="$RPM_OPT_FLAGS" ./configure \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2 \
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm2} \
 	$RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
 %{__make} install \
@@ -94,6 +97,9 @@ mv $RPM_BUILD_ROOT%{_datadir}/icons/mini.*.xpm $RPM_BUILD_ROOT%{_datadir}/icons/
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
+install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
+install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
+
 # consflicts with gimp
 rm -f $RPM_BUILD_ROOT/usr/X11R6/share/icons/{folder,question}.xpm
 
@@ -111,6 +117,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs
 %dir /etc/X11/fvwm2
 %config /etc/X11/fvwm2/*
+%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
+/etc/sysconfig/wmstyle/*.names
 %dir %{_libdir}/X11/fvwm2
 %attr(755,root,root) %{_libdir}/X11/fvwm2/*
 %attr(755,root,root) %{_bindir}/*
