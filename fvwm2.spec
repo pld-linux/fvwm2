@@ -2,11 +2,14 @@ Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
 Version:	2.2
 Release:	6
-Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-2.2.tar.gz
+License:	GPL
+Group:		X11/Window Managers
+Group(pl):	X11/Zarz±dcy Okien
+Group(es):	X11/Administraadores De Ventanas
+Group(fr):	X11/Gestionnaires De Fenêtres
+Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.gz
 Source1:	fvwm-2.0.46.icons.tar.gz
 Patch0:		fvwm-2.2-redhat.patch
-Copyright:	GPL
-Group:		User Interface/Desktops
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
 Url:		http://fvwm.math.uh.edu/
@@ -19,27 +22,33 @@ Obsoletes:	fvwm95
 FVWM2 (the F stands for whatever you want, but the VWM stands for
 Virtual Window Manager) is an improved version of the FVWM window
 manager for the X Window System and shares the same characteristics as
-FVWM.  
+FVWM.
 
-Install the fvwm2 package if you'd like to use the FVWM2 window manager.
-If you install fvwm2, you'll also need to install fvwm2-icons.
+Install the fvwm2 package if you'd like to use the FVWM2 window
+manager. If you install fvwm2, you'll also need to install
+fvwm2-icons.
 
 %description -l pl
-FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od pierwszych
-liter "Virtual Window Manager", czyli wirtualnego mened¿era okien) to ulepszona
-wersja mened¿era okien dla systemu X Window FVWM i posiada te same cechy.
+FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od
+pierwszych liter "Virtual Window Manager", czyli wirtualnego mened¿era
+okien) to ulepszona wersja mened¿era okien dla systemu X Window FVWM i
+posiada te same cechy.
 
-Nale¿y zainstalowaæ pakiet fvwm2 jesli chce siê uzywaæ mened¿era okien FVWM2.
-Instaluj±c fvwm2 nalezy równiez zainstalowaæ pakiet fvwm2-icons.
+Nale¿y zainstalowaæ pakiet fvwm2 jesli chce siê uzywaæ mened¿era okien
+FVWM2. Instaluj±c fvwm2 nalezy równiez zainstalowaæ pakiet
+fvwm2-icons.
 
 %package icons
-Summary:	Graphic files used by the FVWM and FVWM2 window managers.
-Group:		User Interface/Desktops
+Summary:	Graphic files used by the FVWM and FVWM2 window managers
+Group:		X11/Window Managers
+Group(pl):	X11/Zarz±dcy Okien
+Group(es):	X11/Administraadores De Ventanas
+Group(fr):	X11/Gestionnaires De Fenêtres
 Obsoletes:	fvwm95-icons
 
 %description icons
 The fvwm2-icons package contains icons, bitmaps and pixmaps used by
-the FVWM and FVWM2 X Window System window managers.  
+the FVWM and FVWM2 X Window System window managers.
 
 You'll need to install fvwm2-icons if you are installing fvwm and/or
 fvwm2.
@@ -53,22 +62,22 @@ CFLAGS="$RPM_OPT_FLAGS" ./configure \
 	--prefix=%{_prefix} \
 	--enable-extras \
 	--libexecdir=\${prefix}/lib/X11/fvwm2	\
-	--sysconfdir=/etc/X11/fvwm2 \
+	--sysconfdir=%{_sysconfdir}/X11/fvwm2 \
 	--mandir=%{_mandir}
 make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/etc/X11/fvwm2
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
 
 make install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
-	sysconfdir=$RPM_BUILD_ROOT/etc/X11/fvwm2 \
+	sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2 \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
-	INSTALL_PROGRAM="/usr/bin/install -c -s"
+	INSTALL_PROGRAM="%{_bindir}/install -c -s"
 
-install -m 644 sample.fvwmrc/system.fvwm2rc $RPM_BUILD_ROOT/etc/X11/fvwm2
-rm -rf $RPM_BUILD_ROOT/usr/share/icons
+install sample.fvwmrc/system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
+rm -rf $RPM_BUILD_ROOT%{_datadir}/icons
 install -d $RPM_BUILD_ROOT%{_datadir}/icons/mini
 
 install icons/*.xpm $RPM_BUILD_ROOT%{_datadir}/icons
