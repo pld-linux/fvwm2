@@ -49,7 +49,7 @@ BuildRequires:	readline-devel >= 4.2
 BuildRequires:	rpm-perlprov
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
-Requires:	xinitrc >= 3.0
+Requires:	xinitrc-ng
 Requires:	XFree86-tools
 Obsoletes:	fvwm95
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
