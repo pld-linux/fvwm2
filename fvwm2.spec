@@ -1,7 +1,7 @@
 Summary:	An improved version of the FVWM X-based window manager.
 Name:		fvwm2
 Version:	2.2
-Release:	8
+Release:	9
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
@@ -15,6 +15,7 @@ Patch0:		fvwm2-paths.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
 Requires:	wmconfig
+Requires:	m4
 Url:		http://fvwm.math.uh.edu/
 Obsoletes:	fvwm95
 
