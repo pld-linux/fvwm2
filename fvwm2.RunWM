@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# RunWM - this is a script used to launch window manager
+#
+
+# first, find an M4-enabled config file (such as 
+# the one from AnotherLevel) for fvwm2 or fvwm95.
+RCFILE=""
+for tryfile in "$HOME/.fvwm2rc.m4" "/etc/X11/AnotherLevel/fvwm2rc.m4"; do
+	if [ -f "$tryfile" ]; then
+		RCFILE="$tryfile"
+		break
+	fi
+done
+
+# if it really exists, use it; if not, fvwm2 or fvwm95 will
+# automagically look for a config file in the regular places.
+if [ -n "$RCFILE" ]; then
+	FVWMOPTIONS="-cmd 'FvwmM4 -debug $RCFILE'"
+else
+	FVWMOPTIONS=""
+fi
+
+# TheNextLevel is supposed to work with both fvwm95 and fvwm2
+for FVWMVER in 2 95 95-2; do
+	if [ -n "$(which fvwm${FVWMVER})" ]; then
+		# if this works, we stop here
+		eval "exec /usr/X11R6/bin/fvwm${FVWMVER} ${FVWMOPTIONS}"
+	fi
+done
+cat >&2 <<EOF
+ WARNING: You selected Fvwm2 as your window manager, but your installation
+ does not appear to be functional. The executable /usr/X11R6/bin/fvwm2 was 
+ not found on your system.
+EOF
