@@ -30,6 +30,7 @@ Requires:	m4
 Requires:	xinitrc >= 3.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gtk+-devel
 BuildRequires:	readline-devel >= 4.2
 Obsoletes:	fvwm95
 
