@@ -30,7 +30,7 @@ diff -uNr fvwm-2.5.10.orig/fvwm2.menu.m4 fvwm-2.5.10/fvwm2.menu.m4
 diff -uNr fvwm-2.5.10.orig/system.fvwm2rc fvwm-2.5.10/system.fvwm2rc
 --- fvwm-2.5.10.orig/system.fvwm2rc	Sun Nov 18 21:09:19 2001
 +++ fvwm-2.5.10/system.fvwm2rc	Thu Sep 16 11:03:03 2004
-@@ -10,9 +10,9 @@
+@@ -10,9 +10,8 @@
  ##########################################################################
  # PATH Setup 
  
@@ -38,8 +38,7 @@ diff -uNr fvwm-2.5.10.orig/system.fvwm2rc fvwm-2.5.10/system.fvwm2rc
 -PixmapPath /usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
 -IconPath   /usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/bitmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
 +ModulePath /usr/lib:/usr/X11R6/lib:/usr/share/fvwm:/usr/lib/fvwm
-+PixmapPath /usr/share/pixmaps:/usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/:/usr/share/pixmaps/mini/
-+IconPath   /usr/share/pixmaps:/usr/X11R6/include/X11/bitmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/:/usr/share/pixmaps/mini/
++ImagePath  /usr/share/pixmaps:/usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/:/usr/share/pixmaps/mini/
  
  ############################################################################
  # COLORS and FONTS
