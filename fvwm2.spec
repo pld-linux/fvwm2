@@ -175,6 +175,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+mv $RPM_BUILD_ROOT%{_mandir}/man1/fvwm{,2}.1
+
 install -d \
 	$RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}/mini}
@@ -234,7 +236,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/FvwmP[!e]*.1*
 %{_mandir}/man1/FvwmW[!i]*.1*
 %{_mandir}/man1/FvwmWinList.1*
-%{_mandir}/man1/fvwm.1*
+%{_mandir}/man1/fvwm2.1*
 %{_mandir}/man1/fvwm-[!p]*.1*
 
 %files icons
