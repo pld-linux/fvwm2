@@ -7,7 +7,7 @@ Source1:	fvwm-2.0.46.icons.tar.gz
 Patch0:		fvwm-2.2-redhat.patch
 Copyright:	GPL
 Group:		User Interface/Desktops
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	fvwm2-icons
 Url:		http://fvwm.math.uh.edu/
 Obsoletes:	fvwm95
@@ -31,7 +31,6 @@ wersja mened¿era okien dla systemu X Window FVWM i posiada te same cechy.
 
 Nale¿y zainstalowaæ pakiet fvwm2 jesli chce siê uzywaæ mened¿era okien FVWM2.
 Instaluj±c fvwm2 nalezy równiez zainstalowaæ pakiet fvwm2-icons.
-
 
 %package icons
 Summary:	Graphic files used by the FVWM and FVWM2 window managers.
