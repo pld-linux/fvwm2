@@ -8,7 +8,7 @@ Summary(pl):	Ulepszona wersja zarz±dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	÷ÉÒÔÕÁÌØÎÙÊ ÏËÏÎÎÙÊ ÍÅÎÅÄÖÅÒ F(?)
 Name:		fvwm2
-Version:	2.4.4
+Version:	2.5.0
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
@@ -16,7 +16,7 @@ Group(de):	X11/Fenstermanager
 Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De Fenêtres
 Group(pl):	X11/Zarz±dcy Okien
-Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.gz
+Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
 Source1:	fvwm-2.0.46.icons.tar.gz
 Source2:	%{name}.desktop
 Source3:	%{name}-system.%{name}rc.tar.gz
