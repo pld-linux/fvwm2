@@ -29,8 +29,8 @@ Source2:	%{name}.desktop
 Source3:	%{name}-system.%{name}rc.tar.gz
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
-Patch0:		%{name}-paths.patch
-Patch1:		FvwmIconMan.patch
+#Patch0:		%{name}-paths.patch
+#Patch1:		FvwmIconMan.patch
 URL:		http://www.fvwm.org/
 %{!?_without_xft:BuildRequires:	Xft-devel}
 BuildRequires:	autoconf
