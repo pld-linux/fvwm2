@@ -64,13 +64,13 @@ CFLAGS="$RPM_OPT_FLAGS" ./configure \
 	--libexecdir=\${prefix}/lib/X11/fvwm2	\
 	--sysconfdir=%{_sysconfdir}/X11/fvwm2 \
 	--mandir=%{_mandir}
-make 
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2
 
-make install \
+%{__make} install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm2 \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
