@@ -14,7 +14,7 @@ diff -uNr fvwm-2.5.10.orig/fvwm2.menu.m4 fvwm-2.5.10/fvwm2.menu.m4
 +# slooow
 +#+ I PipeRead 'vfmg -c fvwm2'
 +# generated
-++I PipeRead 'cat /etc/X11/fvwm2/fvwm2.menu2'
+++ I PipeRead 'cat /etc/X11/fvwm2/fvwm2.menu2'
  
  AddToMenu Hotlist		"Root menu"	Title
  +	""			Nop
