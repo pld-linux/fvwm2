@@ -50,7 +50,7 @@ Obsoletes:	fvwm95
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/X11/fvwm2
-%define		_wmpropsdir	/usr/X11R6/share/wm-properties
+%define		_wmpropsdir	/usr/share/wm-properties
 
 %description
 FVWM2 (the F stands for whatever you want, but the VWM stands for
