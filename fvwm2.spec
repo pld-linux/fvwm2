@@ -224,8 +224,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files icons
 %defattr(644,root,root,755)
-%dir %{_datadir}/icons
-%dir %{_datadir}/icons/mini
 %{_datadir}/icons/*.xpm
 %{_datadir}/icons/mini/*.xpm
 
