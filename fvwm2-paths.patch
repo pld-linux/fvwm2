@@ -1,0 +1,19 @@
+--- fvwm-2.2/extras/FvwmConsole/FvwmConsoleC.pl.redhat	Fri Nov 13 14:36:14 1998
++++ fvwm-2.2/extras/FvwmConsole/FvwmConsoleC.pl	Mon Mar 22 17:32:38 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ #    $0 - Front end of FvwmConsole
+ #    FvwmConsole server must be running
+ 
+--- fvwm-2.2/configure.in.redhat	Mon Feb 22 11:25:48 1999
++++ fvwm-2.2/configure.in	Mon Mar 22 17:32:38 1999
+@@ -5,7 +5,7 @@
+ AM_INIT_AUTOMAKE(fvwm, 2.2)
+ AM_CONFIG_HEADER(config.h)
+ 
+-FVWM_MODULEDIR='${libexecdir}/${PACKAGE}/${VERSION}'
++FVWM_MODULEDIR='${libexecdir}'
+ FVWM_CONFIGDIR='${sysconfdir}'
+ 
+ AC_SUBST(FVWM_MODULEDIR)

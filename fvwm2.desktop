@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Fvwm2
+Exec=fvwm2
+TryExec=fvwm2
+
+[Window Manager]
+SessionManaged=false
