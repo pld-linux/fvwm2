@@ -110,7 +110,7 @@ Fvwm için çeþitli minik görüntü ve simgeler.
 
 %build
 rm -f missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
