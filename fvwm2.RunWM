@@ -25,11 +25,11 @@ fi
 for FVWMVER in 2 95 95-2; do
 	if [ -n "$(which fvwm${FVWMVER})" ]; then
 		# if this works, we stop here
-		eval "exec /usr/X11R6/bin/fvwm${FVWMVER} ${FVWMOPTIONS}"
+		eval "exec /usr/bin/fvwm${FVWMVER} ${FVWMOPTIONS}"
 	fi
 done
 cat >&2 <<EOF
  WARNING: You selected Fvwm2 as your window manager, but your installation
- does not appear to be functional. The executable /usr/X11R6/bin/fvwm2 was 
- not found on your system.
+ does not appear to be functional. The executable /usr/bin/fvwm2 was not
+ found on your system.
 EOF

@@ -1,3 +1,13 @@
+#
+# TODO: more updates in system.fvwm2rc (see warnings on run)
+#
+# Conditional build:
+# _with_fribidi		- with bidirectional text support
+# _with_gnome		- with gnome-libs
+# _without_stroke	- without mouse strokes (gestures) support
+# _without_xft		- without Xft (1 or 2) support
+#
+%include	/usr/lib/rpm/macros.perl
 Summary:	An improved version of the FVWM X-based window manager
 Summary(de):	F(?) Virtual Window Manager
 Summary(es):	Administrador de ventanas semejante al mwm
@@ -8,8 +18,8 @@ Summary(pl):	Ulepszona wersja zarz±dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	÷ÉÒÔÕÁÌØÎÙÊ ÏËÏÎÎÙÊ ÍÅÎÅÄÖÅÒ F(?)
 Name:		fvwm2
-Version:	2.5.0
-Release:	2
+Version:	2.5.5
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -19,21 +29,26 @@ Source3:	%{name}-system.%{name}rc.tar.gz
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
 Patch0:		%{name}-paths.patch
-Patch1:		%{name}-ac.patch
 URL:		http://www.fvwm.org/
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+%{!?_without_xft:BuildRequires:	Xft-devel}
+BuildRequires:	autoconf
+BuildRequires:	automake
+%{?_with_fribidi:BuildRequires:	fribidi-devel}
+%{?_with_gnome:BuildRequires:	gnome-libs-devel}
+BuildRequires:	gtk+-devel
+BuildRequires:	libpng-devel
+%{!?_without_stroke:BuildRequires:	libstroke-devel}
+BuildRequires:	readline-devel >= 4.2
+BuildRequires:	rpm-perlprov
 Requires:	fvwm2-icons
 Requires:	wmconfig >= 0.9.10-6
 Requires:	m4
 Requires:	xinitrc >= 3.0
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gtk+-devel
-BuildRequires:	readline-devel >= 4.2
 Obsoletes:	fvwm95
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/X11/fvwm2
-%define		_wmpropsdir	%{_datadir}/wm-properties
+%define		_wmpropsdir	/usr/X11R6/share/wm-properties
 
 %description
 FVWM2 (the F stands for whatever you want, but the VWM stands for
@@ -91,48 +106,61 @@ Ten pakiet zawiera ikony, bitmapy i pixmapy dla fvwm i fvwm2.
 %description icons -l tr
 Fvwm için çeþitli minik görüntü ve simgeler.
 
+%package perl
+Summary:	fvwm-perllib, FvwmPerl and dependent modules
+Summary(pl):	fvwm-perllib, FvwmPerl i zale¿ne modu³y
+Group:		X11/Window Managers/Tools
+Requires:	%{name} = %{version}
+
+%description perl
+fvwm-perllib, FvwmPerl and dependent modules.
+
+%description perl -l pl
+fvwm-perllib, FvwmPerl i zale¿ne modu³y.
+
 %prep
 %setup -n fvwm-%{version} -q -a1 -a3
 %patch0 -p1
-%patch1 -p1
 
 %build
 rm -f missing
 %{__aclocal}
-%{__automake}
 %{__autoconf}
-CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
+%{__automake}
 %configure \
-	--disable-package-subdirs \
 	--disable-dmalloc \
 	--disable-efence \
 	--disable-debug-msgs \
 	--disable-command-log \
+	%{!?_with_fribidi:--disable-bidi} \
+	%{?_without_xft:--disable-xft} \
 	--enable-multibyte \
 	--enable-shape \
-	--disable-gnome \
 	--enable-sm \
-	--disable-xinerama \
+	%{?_with_gnome:--with-gnome}%{!?_with_gnome:--without-gnome} \
 	--with-xpm-library \
-	--with-rplay-library \
+	--without-rplay-library \
 	--with-stroke-library \
 	--with-ncurses-library \
 	--with-readline-library \
 	--with-ncurses-library \
-	--with-gnome
+	--without-termcap-library
 
-touch *
+# no such library in PLD
+#	--with-rplay-library
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-#install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm2},%{_wmpropsdir}}
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}
+sed -e 's@^ModulePath.*@ModulePath /usr/lib/fvwm:/usr/share/fvwm@;s@^PixmapPath.*@@' \
+	-e 's@^IconPath.*@ImagePath /usr/share/pixmaps:/usr/X11R6/share/pixmaps:/usr/X11R6/include/X11/pixmaps:/usr/X11R6/include/X11/bitmaps:/usr/share/icons:/usr/share/icons/mini@' \
+	system.fvwm2rc > $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
 install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/icons
@@ -149,27 +177,39 @@ install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 # conflicts with gimp
 rm -f $RPM_BUILD_ROOT%{_datadir}/icons/{folder,question}.xpm
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/wm-properties{,_}
-install -d $RPM_BUILD_ROOT%{_wmpropsdir}
-mv -f $RPM_BUILD_ROOT{%{_datadir}/wm-properties_,%{_wmpropsdir}/fvwm2.desktop}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README AUTHORS NEWS
-%doc docs
+%doc README AUTHORS NEWS docs
 %dir /etc/X11/fvwm2
-%config(noreplace) /etc/X11/fvwm2/*
+%config(noreplace) %verify(not size mtime md5) /etc/X11/fvwm2/*
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 /etc/sysconfig/wmstyle/*.names
-%attr(755,root,root) %{_libdir}/Fvwm*
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/[!f]*
+%attr(755,root,root) %{_bindir}/fvwm
+%attr(755,root,root) %{_bindir}/fvwm2
+%attr(755,root,root) %{_bindir}/fvwm-[!p]*
+%dir %{_libdir}/fvwm
+%attr(755,root,root) %{_libdir}/fvwm/Fvwm[!DGPW]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmD[!e]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmGtk
+%attr(755,root,root) %{_libdir}/fvwm/FvwmP[!e]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmW[!i]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmWinList
 %dir %{_datadir}/fvwm
-%{_datadir}/fvwm/*
+%{_datadir}/fvwm/[!p]*
 %{_wmpropsdir}/fvwm2.desktop
-%{_mandir}/man1/*
+%{_mandir}/man1/[!Ff]*.1*
+%{_mandir}/man1/Fvwm[!DGPW]*.1*
+%{_mandir}/man1/FvwmD[!e]*.1*
+%{_mandir}/man1/FvwmGtk.1*
+%{_mandir}/man1/FvwmP[!e]*.1*
+%{_mandir}/man1/FvwmW[!i]*.1*
+%{_mandir}/man1/FvwmWinList.1*
+%{_mandir}/man1/fvwm.1*
+%{_mandir}/man1/fvwm-[!p]*.1*
 
 %files icons
 %defattr(644,root,root,755)
@@ -177,3 +217,17 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/icons/mini
 %{_datadir}/icons/*.xpm
 %{_datadir}/icons/mini/*.xpm
+
+%files perl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/fvwm-perllib
+%attr(755,root,root) %{_libdir}/fvwm/FvwmDebug
+%attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug
+%attr(755,root,root) %{_libdir}/fvwm/FvwmPerl
+%attr(755,root,root) %{_libdir}/fvwm/FvwmWindowLister
+%{_datadir}/fvwm/perllib
+%{_mandir}/man1/fvwm-perllib.1*
+%{_mandir}/man1/FvwmDebug.1*
+%{_mandir}/man1/FvwmGtkDebug.1*
+%{_mandir}/man1/FvwmPerl.1*
+%{_mandir}/man1/FvwmWindowLister.1*
