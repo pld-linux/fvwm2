@@ -9,6 +9,7 @@
 # _without_xft		- without Xft (1 or 2) support
 #
 %include	/usr/lib/rpm/macros.perl
+%define snap	20031027
 Summary:	An improved version of the FVWM X-based window manager
 Summary(de):	F(?) Virtual Window Manager
 Summary(es):	Administrador de ventanas semejante al mwm
@@ -19,12 +20,12 @@ Summary(pl):	Ulepszona wersja zarz±dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	˜…“‘’¡ÃÿŒŸ  œÀœŒŒŸ  Õ≈Œ≈ƒ÷≈“ F(?)
 Name:		fvwm2
-Version:	2.5.6
-Release:	1
+Version:	2.5.8
+Release:	0.%{snap}.1
 License:	GPL
 Group:		X11/Window Managers
-Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
-# Source0-md5:	2966bd304449604ce5fb21f2cfbb3a80
+Source0:	ftp://ftp.fvwm.org/pub/fvwm/devel/snapshots/fvwm-snap-%{snap}.tar.gz
+# Source0-md5:	d6260e16e46f778db3d36743f43d1515
 Source1:	fvwm-2.0.46.icons.tar.gz
 # Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
 Source2:	%{name}.desktop
@@ -127,7 +128,7 @@ fvwm-perllib, FvwmPerl and dependent modules.
 fvwm-perllib, FvwmPerl i zaleøne modu≥y.
 
 %prep
-%setup -n fvwm-%{version} -q -a1 -a3
+%setup -n fvwm-snap-%{snap} -q -a1 -a3
 %patch0 -p1
 %patch1 -p1
 
@@ -214,7 +215,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/[!Ff]*.1*
 %{_mandir}/man1/Fvwm[!DGPW]*.1*
 %{_mandir}/man1/FvwmD[!e]*.1*
-%{_mandir}/man1/FvwmGtk.1*
 %{_mandir}/man1/FvwmP[!e]*.1*
 %{_mandir}/man1/FvwmW[!i]*.1*
 %{_mandir}/man1/FvwmWinList.1*
