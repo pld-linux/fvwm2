@@ -1,4 +1,11 @@
-Summary:	An improved version of the FVWM X-based window manager.
+Summary:	An improved version of the FVWM X-based window manager
+Summary(de):	F(?) Virtual Window Manager
+Summary(es):	Administrador de ventanas semejante al mwm
+Summary(fr):	F(?) Virtual Window Manager
+Summary(ja):	²şÎÉÈÇ FVWM - X ÍÑ¥¦¥£¥ó¥É¥¦¥Ş¥Í¡¼¥¸¥ã
+Summary(tr):	Yaygın bir pencere denetleyicisi
+Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
+Summary(ru):	÷ÉÒÔÕÁÌØÎÙÊ ÏËÏÎÎÙÊ ÍÅÎÅÄÖÅÒ F(?)
 Name:		fvwm2
 Version:	2.4.3
 Release:	2
@@ -12,7 +19,7 @@ URL:		http://www.fvwm.org/
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.gz
 Source1:	fvwm-2.0.46.icons.tar.gz
 Source2:	%{name}.desktop
-Source3:	%{name}-system.fvwm2rc.tar.gz
+Source3:	%{name}-system.%{name}rc.tar.gz
 Source4:	%{name}.RunWM
 Source5:	%{name}.wm_style
 Patch0:		%{name}-paths.patch
@@ -41,6 +48,19 @@ Install the fvwm2 package if you'd like to use the FVWM2 window
 manager. If you install fvwm2, you'll also need to install
 fvwm2-icons.
 
+%description -l es
+Fvwm2 es una versión del popular administrador de ventanas "Feeble
+Virtual Window Manager".
+
+%description -l ja
+FVWM2 (F¤Ï¹¥¤­¤Ê¤è¤¦¤Ë²ò¼á¤·¤Æ¤¯¤À¤µ¤¤¡£¤¿¤À¤·¡¢ VWM ¤Ï Virtual Window
+Manager ¤ò¾ÊÎ¬¤·¤¿¤â¤Î¤Ç¤¹¡£)¤Ï FVWM ¤ÈÆ±¤¸ÆÃÄ§¤ò»ı¤Á ¹¹¤Ë³ÈÄ¥¤µ¤ì¤¿ X
+Window System ÍÑ¥¦¥£¥ó¥É¥¦¥Ş¥Í¡¼¥¸¥ã¤Ç¤¹¡£
+
+FVWM2 ¥¦¥£¥ó¥É¥¦¥Ş¥Í¡¼¥¸¥ã¤ò»ÈÍÑ¤¹¤ë¾ì¹ç¡¢ fvwm2
+¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È¡¼¥ë ¤·¤Æ¤¯¤À¤µ¤¤¡£ fvwm2
+¥Ñ¥Ã¥±¡¼¥¸¤Î¥¤¥ó¥¹¥È¡¼¥ë¤Ë¤Ï fvwm2-icons ¥Ñ¥Ã¥±¡¼¥¸ ¤âÉ¬Í×¤Ç¤¹¡£
+
 %description -l pl
 FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od
 pierwszych liter "Virtual Window Manager", czyli wirtualnego mened¿era
@@ -51,8 +71,19 @@ Nale¿y zainstalowaæ pakiet fvwm2 jesli chce siê uzywaæ mened¿era okien
 FVWM2. Instaluj±c fvwm2 nalezy równiez zainstalowaæ pakiet
 fvwm2-icons.
 
+%description -l pt_BR
+Fvwm2 é uma versão do popular gerenciador de janelas "Feeble Virtual
+Window Manager".
+
+%description -l ru
+fvwm2 - ÜÔÏ ×ÅÒÓÉÑ ĞÏĞÕÌÑÒÎÏÇÏ "Feeble Virtual Window Manager".
+
 %package icons
 Summary:	Graphic files used by the FVWM and FVWM2 window managers
+Summary(de):	Symbole und Pixmaps für fvwm
+Summary(fr):	Icônes et pixmaps pour fvwm
+Summary(ru):	ğÉËÔÏÇÒÁÍÍÙ É ÒÁÓÔÒÏ×ÙÅ ËÁÒÔÉÎËÉ ÄÌÑ fvwm2
+Summary(tr):	Fvwm için çeşitli minik görüntü ve simgeler
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
 Group(es):	X11/Administraadores De Ventanas
@@ -66,6 +97,21 @@ the FVWM and FVWM2 X Window System window managers.
 
 You'll need to install fvwm2-icons if you are installing fvwm and/or
 fvwm2.
+
+%description icons
+This package contains icons, bitmaps and pixmaps for fvwm and fvwm2.
+
+%description -l de icons
+Dieses Paket enthält Symbole, Bitmaps und Pixmaps für fvwm und fvwm2.
+
+%description -l fr icons
+Ce package contient des icones, bitmaps et pixmaps pour fvwm et fvwm2.
+
+%description icons -l ru
+üÔÏÔ ĞÁËÅÔ ÓÏÄÅÒÖÉÔ ĞÉËÔÏÇÒÁÍÍÙ É ĞÒÏŞÉÅ ËÁÒÔÉÎËÉ ÄÌÑ fvwm2.
+
+%description -l tr icons
+Fvwm için çeşitli minik görüntü ve simgeler.
 
 %prep
 %setup -n fvwm-%{version} -q -a1 -a3
