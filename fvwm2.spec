@@ -42,10 +42,6 @@ Virtual Window Manager) is an improved version of the FVWM window
 manager for the X Window System and shares the same characteristics as
 FVWM.
 
-Install the fvwm2 package if you'd like to use the FVWM2 window
-manager. If you install fvwm2, you'll also need to install
-fvwm2-icons.
-
 %description -l es
 Fvwm2 es una versión del popular administrador de ventanas "Feeble
 Virtual Window Manager".
@@ -55,19 +51,11 @@ FVWM2 (F¤Ï¹¥¤­¤Ê¤è¤¦¤Ë²ò¼á¤·¤Æ¤¯¤À¤µ¤¤¡£¤¿¤À¤·¡¢ VWM ¤Ï Virtual Window
 Manager ¤ò¾ÊÎ¬¤·¤¿¤â¤Î¤Ç¤¹¡£)¤Ï FVWM ¤ÈÆ±¤¸ÆÃÄ§¤ò»ý¤Á ¹¹¤Ë³ÈÄ¥¤µ¤ì¤¿ X
 Window System ÍÑ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã¤Ç¤¹¡£
 
-FVWM2 ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã¤ò»ÈÍÑ¤¹¤ë¾ì¹ç¡¢ fvwm2
-¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È¡¼¥ë ¤·¤Æ¤¯¤À¤µ¤¤¡£ fvwm2
-¥Ñ¥Ã¥±¡¼¥¸¤Î¥¤¥ó¥¹¥È¡¼¥ë¤Ë¤Ï fvwm2-icons ¥Ñ¥Ã¥±¡¼¥¸ ¤âÉ¬Í×¤Ç¤¹¡£
-
 %description -l pl
 FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od
-pierwszych liter "Virtual Window Manager", czyli wirtualnego mened¿era
-okien) to ulepszona wersja mened¿era okien dla systemu X Window FVWM i
-posiada te same cechy.
-
-Nale¿y zainstalowaæ pakiet fvwm2 jesli chce siê uzywaæ mened¿era okien
-FVWM2. Instaluj±c fvwm2 nalezy równiez zainstalowaæ pakiet
-fvwm2-icons.
+pierwszych liter "Virtual Window Manager", czyli wirtualny zarz±dca
+okien) to ulepszona wersja zarz±dcy okien dla systemu X Window FVWM i
+posiadaj±ca te same cechy.
 
 %description -l pt_BR
 Fvwm2 é uma versão do popular gerenciador de janelas "Feeble Virtual
