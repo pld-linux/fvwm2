@@ -5,3 +5,4 @@ Exec=fvwm2
 TryExec=fvwm2
 Name=FVWM2
 X-AltNames=fvwm95
+# vi: encoding=utf-8
