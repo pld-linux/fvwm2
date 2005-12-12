@@ -38,7 +38,6 @@ Patch1:		FvwmPager.patch
 Patch2:		%{name}-locale_names.patch
 Patch3:		%{name}-varia.patch
 URL:		http://www.fvwm.org/
-%{?with_xft:BuildRequires:	xft-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_fribidi:BuildRequires:	fribidi-devel}
@@ -49,12 +48,13 @@ BuildRequires:	libpng-devel
 BuildRequires:	readline-devel >= 4.2
 %{?with_rplay:BuildRequires:	rplay-devel}
 BuildRequires:	rpm-perlprov
+%{?with_xft:BuildRequires:	xft-devel}
 Requires(post):	vfmg >= 0.9.18-2
+Requires:	XFree86-tools
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
 Requires:	vfmg >= 0.9.18-2
 Requires:	xinitrc-ng
-Requires:	XFree86-tools
 Obsoletes:	fvwm95
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -192,7 +192,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE5} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
-touch $RPM_BUILD_ROOT/etc/X11/fvwm2/fvwm2.menu2
+touch $RPM_BUILD_ROOT%{_sysconfdir}/fvwm2.menu2
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/xpmroot.1
 echo ".so fvwm-root.1" > $RPM_BUILD_ROOT%{_mandir}/man1/xpmroot.1
@@ -211,9 +211,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README AUTHORS NEWS docs
-%dir /etc/X11/fvwm2
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fvwm2.menu.m4
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/system.fvwm2rc
+%dir %{_sysconfdir}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fvwm2.menu.m4
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/system.fvwm2rc
 %ghost %{_sysconfdir}/fvwm2.menu2
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %attr(755,root,root) %{_bindir}/[!f]*
