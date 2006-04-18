@@ -51,7 +51,7 @@ BuildRequires:	rpm-perlprov
 %{?with_xft:BuildRequires:	xorg-lib-libXft-devel}
 BuildRequires:	xorg-lib-libXpm-devel
 BuildRequires:	xorg-lib-libXt-devel
-Requires(post):	vfmg >= 0.9.18-2
+Requires(post):	vfmg >= 0.9.95
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
 Requires:	vfmg >= 0.9.18-2
@@ -207,7 +207,7 @@ rm -rf $RPM_BUILD_ROOT
 # generate initial menu
 [ -f /etc/sysconfig/vfmg ] && . /etc/sysconfig/vfmg
 [ "$FVWM2" = yes -o "$FVWM2" = 1 -o ! -f /etc/X11/fvwm2/fvwm2.menu2 ] && \
-	vfmg -i -f -x -c fvwm2 >/etc/X11/fvwm2/fvwm2.menu2 2>/dev/null ||:
+	vfmg fvwm2 >/etc/X11/fvwm2/fvwm2.menu2 2>/dev/null ||:
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
