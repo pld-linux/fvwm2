@@ -1,10 +1,9 @@
-diff -urN fvwm-2.5.12.vanilla/configure.in fvwm-2.5.12/configure.in
---- fvwm-2.5.12.vanilla/configure.in	2005-02-21 21:46:48.924687776 +0100
-+++ fvwm-2.5.12/configure.in	2005-02-21 21:48:37.672155648 +0100
-@@ -794,7 +794,7 @@
+--- fvwm-2.5.16.orig/configure.ac	2006-04-14 03:13:34.000000000 +0200
++++ fvwm-2.5.16/configure.ac	2006-04-14 03:14:04.000000000 +0200
+@@ -922,7 +922,7 @@ AC_ARG_ENABLE(perllib,
  AC_SUBST(FVWM_PERLLIB)
  
- dnl ******* gettext
+ # ******* gettext
 -ALL_LINGUAS="ar de fr sv_SE zh_CN"
 +ALL_LINGUAS="ar de fr sv zh"
  FVWM_DOMAIN="fvwm"
