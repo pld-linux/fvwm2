@@ -19,12 +19,12 @@ Summary(pl):	Ulepszona wersja zarz±dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	÷ÉÒÔÕÁÌØÎÙÊ ÏËÏÎÎÙÊ ÍÅÎÅÄÖÅÒ F(?)
 Name:		fvwm2
-Version:	2.5.14
-Release:	2
+Version:	2.5.16
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
-# Source0-md5:	536045930f14136181d714cf0b696f35
+# Source0-md5:	78eb609bd913868f659034173292b9bd
 Source1:	fvwm-2.0.46.icons.tar.gz
 # Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
 Source2:	%{name}.desktop
@@ -48,9 +48,10 @@ BuildRequires:	libpng-devel
 BuildRequires:	readline-devel >= 4.2
 %{?with_rplay:BuildRequires:	rplay-devel}
 BuildRequires:	rpm-perlprov
-%{?with_xft:BuildRequires:	xft-devel}
+%{?with_xft:BuildRequires:	xorg-lib-libXft-devel}
+BuildRequires:	xorg-lib-libXpm-devel
+BuildRequires:	xorg-lib-libXt-devel
 Requires(post):	vfmg >= 0.9.18-2
-Requires:	XFree86-tools
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
 Requires:	vfmg >= 0.9.18-2
