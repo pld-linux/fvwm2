@@ -222,10 +222,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/fvwm2
 %attr(755,root,root) %{_bindir}/fvwm-[!p]*
 %dir %{_libdir}/fvwm
-%attr(755,root,root) %{_libdir}/fvwm/Fvwm[!DGPW]*
+%attr(755,root,root) %{_libdir}/fvwm/Fvwm[!DGPWT]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmD[!e]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmGtk
 %attr(755,root,root) %{_libdir}/fvwm/FvwmP[!e]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmT[!a]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmTaskBar
 %attr(755,root,root) %{_libdir}/fvwm/FvwmW[!i]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmWinList
 %dir %{_datadir}/fvwm
@@ -252,6 +254,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/fvwm/FvwmDebug
 %attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug
 %attr(755,root,root) %{_libdir}/fvwm/FvwmPerl
+%attr(755,root,root) %{_libdir}/fvwm/FvwmTabs
 %attr(755,root,root) %{_libdir}/fvwm/FvwmWindowMenu
 %{_datadir}/fvwm/perllib
 %{_mandir}/man1/fvwm-perllib.1*
