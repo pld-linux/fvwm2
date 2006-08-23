@@ -55,7 +55,6 @@ Requires(post):	vfmg >= 0.9.95
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
 Requires:	vfmg >= 0.9.18-2
-Requires:	xinitrc-ng
 Obsoletes:	fvwm95
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
