@@ -1,0 +1,3 @@
+- Updated to 2.4.3. NFY.
+- Requires update of default config file or relocation of %{_libdir}/Fvwm*
+  files.
