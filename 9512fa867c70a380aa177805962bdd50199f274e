@@ -1,0 +1,3 @@
+- Added %{_pixmapsdir}/mini
+- Removed wmconfig deps
+- Release 2
