@@ -14,10 +14,10 @@ Summary(de):	F(?) Virtual Window Manager
 Summary(es):	Administrador de ventanas semejante al mwm
 Summary(fr):	F(?) Virtual Window Manager
 Summary(ja):	²şÎÉÈÇ FVWM - X ÍÑ¥¦¥£¥ó¥É¥¦¥Ş¥Í¡¼¥¸¥ã
-Summary(tr):	Yaygın bir pencere denetleyicisi
 Summary(pl):	Ulepszona wersja zarz±dcy okien FVWM
 Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
 Summary(ru):	÷ÉÒÔÕÁÌØÎÙÊ ÏËÏÎÎÙÊ ÍÅÎÅÄÖÅÒ F(?)
+Summary(tr):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
 Version:	2.5.16
 Release:	1
@@ -121,7 +121,7 @@ Fvwm için çeşitli minik görüntü ve simgeler.
 Summary:	fvwm-perllib, FvwmPerl and dependent modules
 Summary(pl):	fvwm-perllib, FvwmPerl i zale¿ne modu³y
 Group:		X11/Window Managers/Tools
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description perl
 fvwm-perllib, FvwmPerl and dependent modules.
