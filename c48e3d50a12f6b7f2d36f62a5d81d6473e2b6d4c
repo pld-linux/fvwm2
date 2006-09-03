@@ -1,0 +1,6 @@
+- release 8
+- added fvwm2.desktop
+- new system.fvwm2rc
+- install all icons
+- use RPM_OPT_FLAGS
+- cleanup %install
