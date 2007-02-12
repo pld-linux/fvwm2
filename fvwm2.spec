@@ -10,14 +10,14 @@
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	An improved version of the FVWM X-based window manager
-Summary(de):	F(?) Virtual Window Manager
-Summary(es):	Administrador de ventanas semejante al mwm
-Summary(fr):	F(?) Virtual Window Manager
-Summary(ja):	²şÎÉÈÇ FVWM - X ÍÑ¥¦¥£¥ó¥É¥¦¥Ş¥Í¡¼¥¸¥ã
-Summary(pl):	Ulepszona wersja zarz±dcy okien FVWM
-Summary(pt_BR):	Gerenciador de janelas semelhante ao mwm
-Summary(ru):	÷ÉÒÔÕÁÌØÎÙÊ ÏËÏÎÎÙÊ ÍÅÎÅÄÖÅÒ F(?)
-Summary(tr):	Yaygın bir pencere denetleyicisi
+Summary(de.UTF-8):   F(?) Virtual Window Manager
+Summary(es.UTF-8):   Administrador de ventanas semejante al mwm
+Summary(fr.UTF-8):   F(?) Virtual Window Manager
+Summary(ja.UTF-8):   æ”¹è‰¯ç‰ˆ FVWM - X ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒãƒ¼ã‚¸ãƒ£
+Summary(pl.UTF-8):   Ulepszona wersja zarzÄ…dcy okien FVWM
+Summary(pt_BR.UTF-8):   Gerenciador de janelas semelhante ao mwm
+Summary(ru.UTF-8):   Ğ’Ğ¸Ñ€Ñ‚ÑƒĞ°Ğ»ÑŒĞ½Ñ‹Ğ¹ Ğ¾ĞºĞ¾Ğ½Ğ½Ñ‹Ğ¹ Ğ¼ĞµĞ½ĞµĞ´Ğ¶ĞµÑ€ F(?)
+Summary(tr.UTF-8):   YaygÄ±n bir pencere denetleyicisi
 Name:		fvwm2
 Version:	2.5.16
 Release:	1
@@ -67,67 +67,67 @@ Virtual Window Manager) is an improved version of the FVWM window
 manager for the X Window System and shares the same characteristics as
 FVWM.
 
-%description -l es
-Fvwm2 es una versión del popular administrador de ventanas "Feeble
+%description -l es.UTF-8
+Fvwm2 es una versiÃ³n del popular administrador de ventanas "Feeble
 Virtual Window Manager".
 
-%description -l ja
-FVWM2 (F¤Ï¹¥¤­¤Ê¤è¤¦¤Ë²ò¼á¤·¤Æ¤¯¤À¤µ¤¤¡£¤¿¤À¤·¡¢ VWM ¤Ï Virtual Window
-Manager ¤ò¾ÊÎ¬¤·¤¿¤â¤Î¤Ç¤¹¡£)¤Ï FVWM ¤ÈÆ±¤¸ÆÃÄ§¤ò»ı¤Á ¹¹¤Ë³ÈÄ¥¤µ¤ì¤¿ X
-Window System ÍÑ¥¦¥£¥ó¥É¥¦¥Ş¥Í¡¼¥¸¥ã¤Ç¤¹¡£
+%description -l ja.UTF-8
+FVWM2 (Fã¯å¥½ããªã‚ˆã†ã«è§£é‡ˆã—ã¦ãã ã•ã„ã€‚ãŸã ã—ã€ VWM ã¯ Virtual Window
+Manager ã‚’çœç•¥ã—ãŸã‚‚ã®ã§ã™ã€‚)ã¯ FVWM ã¨åŒã˜ç‰¹å¾´ã‚’æŒã¡ æ›´ã«æ‹¡å¼µã•ã‚ŒãŸ X
+Window System ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒãƒ¼ã‚¸ãƒ£ã§ã™ã€‚
 
-%description -l pl
-FVWM (za F mo¿na sobie podstawiæ co kto woli, lecz VWM pochodzi od
-pierwszych liter "Virtual Window Manager", czyli wirtualny zarz±dca
-okien) to ulepszona wersja zarz±dcy okien dla systemu X Window FVWM i
-posiadaj±ca te same cechy.
+%description -l pl.UTF-8
+FVWM (za F moÅ¼na sobie podstawiÄ‡ co kto woli, lecz VWM pochodzi od
+pierwszych liter "Virtual Window Manager", czyli wirtualny zarzÄ…dca
+okien) to ulepszona wersja zarzÄ…dcy okien dla systemu X Window FVWM i
+posiadajÄ…ca te same cechy.
 
-%description -l pt_BR
-Fvwm2 é uma versão do popular gerenciador de janelas "Feeble Virtual
+%description -l pt_BR.UTF-8
+Fvwm2 Ã© uma versÃ£o do popular gerenciador de janelas "Feeble Virtual
 Window Manager".
 
-%description -l ru
-fvwm2 - ÜÔÏ ×ÅÒÓÉÑ ĞÏĞÕÌÑÒÎÏÇÏ "Feeble Virtual Window Manager".
+%description -l ru.UTF-8
+fvwm2 - ÑÑ‚Ğ¾ Ğ²ĞµÑ€ÑĞ¸Ñ Ğ¿Ğ¾Ğ¿ÑƒĞ»ÑÑ€Ğ½Ğ¾Ğ³Ğ¾ "Feeble Virtual Window Manager".
 
 %package icons
 Summary:	Graphic files used by the FVWM and FVWM2 window managers
-Summary(de):	Symbole und Pixmaps für fvwm
-Summary(fr):	Icônes et pixmaps pour fvwm
-Summary(pl):	Pliki graficzne u¿ywane przez zarz±dców okien FVWM i FVWM2
-Summary(ru):	ğÉËÔÏÇÒÁÍÍÙ É ÒÁÓÔÒÏ×ÙÅ ËÁÒÔÉÎËÉ ÄÌÑ fvwm2
-Summary(tr):	Fvwm için çeşitli minik görüntü ve simgeler
+Summary(de.UTF-8):   Symbole und Pixmaps fÃ¼r fvwm
+Summary(fr.UTF-8):   IcÃ´nes et pixmaps pour fvwm
+Summary(pl.UTF-8):   Pliki graficzne uÅ¼ywane przez zarzÄ…dcÃ³w okien FVWM i FVWM2
+Summary(ru.UTF-8):   ĞŸĞ¸ĞºÑ‚Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ñ‹ Ğ¸ Ñ€Ğ°ÑÑ‚Ñ€Ğ¾Ğ²Ñ‹Ğµ ĞºĞ°Ñ€Ñ‚Ğ¸Ğ½ĞºĞ¸ Ğ´Ğ»Ñ fvwm2
+Summary(tr.UTF-8):   Fvwm iÃ§in Ã§eÅŸitli minik gÃ¶rÃ¼ntÃ¼ ve simgeler
 Group:		X11/Window Managers
 Obsoletes:	fvwm95-icons
 
 %description icons
 This package contains icons, bitmaps and pixmaps for fvwm and fvwm2.
 
-%description icons -l de
-Dieses Paket enthält Symbole, Bitmaps und Pixmaps für fvwm und fvwm2.
+%description icons -l de.UTF-8
+Dieses Paket enthÃ¤lt Symbole, Bitmaps und Pixmaps fÃ¼r fvwm und fvwm2.
 
-%description icons -l fr
+%description icons -l fr.UTF-8
 Ce package contient des icones, bitmaps et pixmaps pour fvwm et fvwm2.
 
-%description icons -l pl
+%description icons -l pl.UTF-8
 Ten pakiet zawiera ikony, bitmapy i pixmapy dla fvwm i fvwm2.
 
-%description icons -l ru
-üÔÏÔ ĞÁËÅÔ ÓÏÄÅÒÖÉÔ ĞÉËÔÏÇÒÁÍÍÙ É ĞÒÏŞÉÅ ËÁÒÔÉÎËÉ ÄÌÑ fvwm2.
+%description icons -l ru.UTF-8
+Ğ­Ñ‚Ğ¾Ñ‚ Ğ¿Ğ°ĞºĞµÑ‚ ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ¸Ñ‚ Ğ¿Ğ¸ĞºÑ‚Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ñ‹ Ğ¸ Ğ¿Ñ€Ğ¾Ñ‡Ğ¸Ğµ ĞºĞ°Ñ€Ñ‚Ğ¸Ğ½ĞºĞ¸ Ğ´Ğ»Ñ fvwm2.
 
-%description icons -l tr
-Fvwm için çeşitli minik görüntü ve simgeler.
+%description icons -l tr.UTF-8
+Fvwm iÃ§in Ã§eÅŸitli minik gÃ¶rÃ¼ntÃ¼ ve simgeler.
 
 %package perl
 Summary:	fvwm-perllib, FvwmPerl and dependent modules
-Summary(pl):	fvwm-perllib, FvwmPerl i zale¿ne modu³y
+Summary(pl.UTF-8):   fvwm-perllib, FvwmPerl i zaleÅ¼ne moduÅ‚y
 Group:		X11/Window Managers/Tools
 Requires:	%{name} = %{version}-%{release}
 
 %description perl
 fvwm-perllib, FvwmPerl and dependent modules.
 
-%description perl -l pl
-fvwm-perllib, FvwmPerl i zale¿ne modu³y.
+%description perl -l pl.UTF-8
+fvwm-perllib, FvwmPerl i zaleÅ¼ne moduÅ‚y.
 
 %prep
 %setup -n fvwm-%{version} -q -a1 -a3
