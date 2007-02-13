@@ -10,14 +10,14 @@
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	An improved version of the FVWM X-based window manager
-Summary(de.UTF-8):   F(?) Virtual Window Manager
-Summary(es.UTF-8):   Administrador de ventanas semejante al mwm
-Summary(fr.UTF-8):   F(?) Virtual Window Manager
-Summary(ja.UTF-8):   改良版 FVWM - X 用ウィンドウマネージャ
-Summary(pl.UTF-8):   Ulepszona wersja zarządcy okien FVWM
-Summary(pt_BR.UTF-8):   Gerenciador de janelas semelhante ao mwm
-Summary(ru.UTF-8):   Виртуальный оконный менеджер F(?)
-Summary(tr.UTF-8):   Yaygın bir pencere denetleyicisi
+Summary(de.UTF-8):	F(?) Virtual Window Manager
+Summary(es.UTF-8):	Administrador de ventanas semejante al mwm
+Summary(fr.UTF-8):	F(?) Virtual Window Manager
+Summary(ja.UTF-8):	改良版 FVWM - X 用ウィンドウマネージャ
+Summary(pl.UTF-8):	Ulepszona wersja zarządcy okien FVWM
+Summary(pt_BR.UTF-8):	Gerenciador de janelas semelhante ao mwm
+Summary(ru.UTF-8):	Виртуальный оконный менеджер F(?)
+Summary(tr.UTF-8):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
 Version:	2.5.16
 Release:	1
@@ -91,11 +91,11 @@ fvwm2 - это версия популярного "Feeble Virtual Window Manage
 
 %package icons
 Summary:	Graphic files used by the FVWM and FVWM2 window managers
-Summary(de.UTF-8):   Symbole und Pixmaps für fvwm
-Summary(fr.UTF-8):   Icônes et pixmaps pour fvwm
-Summary(pl.UTF-8):   Pliki graficzne używane przez zarządców okien FVWM i FVWM2
-Summary(ru.UTF-8):   Пиктограммы и растровые картинки для fvwm2
-Summary(tr.UTF-8):   Fvwm için çeşitli minik görüntü ve simgeler
+Summary(de.UTF-8):	Symbole und Pixmaps für fvwm
+Summary(fr.UTF-8):	Icônes et pixmaps pour fvwm
+Summary(pl.UTF-8):	Pliki graficzne używane przez zarządców okien FVWM i FVWM2
+Summary(ru.UTF-8):	Пиктограммы и растровые картинки для fvwm2
+Summary(tr.UTF-8):	Fvwm için çeşitli minik görüntü ve simgeler
 Group:		X11/Window Managers
 Obsoletes:	fvwm95-icons
 
@@ -119,7 +119,7 @@ Fvwm için çeşitli minik görüntü ve simgeler.
 
 %package perl
 Summary:	fvwm-perllib, FvwmPerl and dependent modules
-Summary(pl.UTF-8):   fvwm-perllib, FvwmPerl i zależne moduły
+Summary(pl.UTF-8):	fvwm-perllib, FvwmPerl i zależne moduły
 Group:		X11/Window Managers/Tools
 Requires:	%{name} = %{version}-%{release}
 
