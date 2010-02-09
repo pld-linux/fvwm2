@@ -45,6 +45,7 @@ BuildRequires:	automake
 BuildRequires:	gtk+-devel
 BuildRequires:	libpng-devel
 %{?with_stroke:BuildRequires:	libstroke-devel}
+BuildRequires:	pkgconfig
 BuildRequires:	readline-devel >= 4.2
 %{?with_rplay:BuildRequires:	rplay-devel}
 BuildRequires:	rpm-perlprov
