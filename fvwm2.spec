@@ -37,13 +37,14 @@ Patch0:		%{name}-paths.patch
 Patch1:		FvwmPager.patch
 Patch2:		%{name}-locale_names.patch
 Patch3:		%{name}-varia.patch
+Patch4:		%{name}-libpng14.patch
 URL:		http://www.fvwm.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_fribidi:BuildRequires:	fribidi-devel}
 %{?with_gnome:BuildRequires:	gnome-libs-devel}
 BuildRequires:	gtk+-devel
-BuildRequires:	libpng-devel
+BuildRequires:	libpng-devel >= 1.4
 %{?with_stroke:BuildRequires:	libstroke-devel}
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel >= 4.2
@@ -137,6 +138,7 @@ fvwm-perllib, FvwmPerl i zależne moduły.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 mv -f po/FvwmScript.sv{_SE,}.po
 mv -f po/FvwmTaskBar.sv{_SE,}.po
