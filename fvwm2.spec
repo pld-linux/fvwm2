@@ -20,7 +20,7 @@ Summary(ru.UTF-8):	Виртуальный оконный менеджер F(?)
 Summary(tr.UTF-8):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
 Version:	2.5.28
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -38,6 +38,7 @@ Patch1:		FvwmPager.patch
 Patch2:		%{name}-locale_names.patch
 Patch3:		%{name}-varia.patch
 Patch4:		%{name}-libpng14.patch
+Patch5:		%{name}-xft2-link.patch
 URL:		http://www.fvwm.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -139,6 +140,7 @@ fvwm-perllib, FvwmPerl i zależne moduły.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 mv -f po/FvwmScript.sv{_SE,}.po
 mv -f po/FvwmTaskBar.sv{_SE,}.po
@@ -192,7 +194,7 @@ mv $RPM_BUILD_ROOT%{_pixmapsdir}/mini-*.xpm \
 # Conflicts with wmmaker
 mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
 
-install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/%{name}-session
+install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/fvwm2-session
 install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 %{?with_gnome:install %{SOURCE5} $RPM_BUILD_ROOT%{_wmpropsdir}}
 install %{SOURCE6} $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -222,9 +224,9 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_sysconfdir}/fvwm2.menu2
 %attr(755,root,root) %{_bindir}/[!f]*
 %attr(755,root,root) %{_bindir}/fvwm
-%attr(755,root,root) %{_bindir}/fvwm2
 %attr(755,root,root) %{_bindir}/fvwm-[!p]*
-%attr(755,root,root) %{_bindir}/fvwm-session
+%attr(755,root,root) %{_bindir}/fvwm2
+%attr(755,root,root) %{_bindir}/fvwm2-session
 %dir %{_libdir}/fvwm
 %attr(755,root,root) %{_libdir}/fvwm/Fvwm[!DGPWT]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmD[!e]*

@@ -1,0 +1,11 @@
+--- fvwm-2.5.28/configure.ac~	2011-07-28 01:41:11.691879311 +0200
++++ fvwm-2.5.28/configure.ac	2011-07-28 01:49:18.593313721 +0200
+@@ -715,7 +715,7 @@
+       AC_DEFINE(HAVE_XFT2)
+       AC_DEFINE(HAVE_XFT)
+       AC_DEFINE(HAVE_XFT_UTF8)
+-      Xft_LIBS=$XFT_LIBS
++      Xft_LIBS="$XFT_LIBS -lfontconfig"
+       Xft_CFLAGS=$XFT_CFLAGS
+     else
+       problem_xft=": Can't detect Xft2, detected fontconfig"
