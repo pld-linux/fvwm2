@@ -31,7 +31,8 @@ Source2:	%{name}-system.%{name}rc.tar.gz
 # Source2-md5:	22c1f6c5ab4bd84376daa37debd3e889
 Source3:	%{name}.RunWM
 Source4:	%{name}-xsession.desktop
-Source5:	mozilla.xpm
+Source5:	%{name}.desktop
+Source6:	mozilla.xpm
 Patch0:		%{name}-paths.patch
 Patch1:		FvwmPager.patch
 Patch2:		%{name}-locale_names.patch
@@ -61,6 +62,7 @@ Conflicts:	filesystem < 3.0-20
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/X11/fvwm2
+%define		_wmpropsdir	/usr/share/gnome/wm-properties
 
 %description
 FVWM2 (the F stands for whatever you want, but the VWM stands for
@@ -176,7 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d \
-	$RPM_BUILD_ROOT%{_sysconfdir} \
+	$RPM_BUILD_ROOT{%{_sysconfdir},%{_wmpropsdir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}/mini}
 
 install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
@@ -192,7 +194,8 @@ mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
 
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/%{name}-session
 install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
-install %{SOURCE5} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE5} $RPM_BUILD_ROOT%{_wmpropsdir}
+install %{SOURCE6} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/fvwm2.menu2
 
@@ -234,6 +237,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/fvwm
 %{_datadir}/fvwm/[!p]*
 %{_datadir}/xsessions/%{name}.desktop
+%{_wmpropsdir}/fvwm2.desktop
 %{_mandir}/man1/[!Ff]*.1*
 %{_mandir}/man1/Fvwm[!DGPW]*.1*
 %{_mandir}/man1/FvwmD[!e]*.1*
