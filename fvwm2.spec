@@ -27,12 +27,11 @@ Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
 # Source0-md5:	8e11fa4f752c568b392973d13af993df
 Source1:	fvwm-2.0.46.icons.tar.gz
 # Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
-Source2:	%{name}.desktop
-Source3:	%{name}-system.%{name}rc.tar.gz
-# Source3-md5:	22c1f6c5ab4bd84376daa37debd3e889
-Source4:	%{name}.RunWM
+Source2:	%{name}-system.%{name}rc.tar.gz
+# Source2-md5:	22c1f6c5ab4bd84376daa37debd3e889
+Source3:	%{name}.RunWM
+Source4:	%{name}-xsession.desktop
 Source5:	mozilla.xpm
-Source6:	%{name}-xsession.desktop
 Patch0:		%{name}-paths.patch
 Patch1:		FvwmPager.patch
 Patch2:		%{name}-locale_names.patch
@@ -62,7 +61,6 @@ Conflicts:	filesystem < 3.0-20
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/X11/fvwm2
-%define		_wmpropsdir	/usr/share/gnome/wm-properties
 
 %description
 FVWM2 (the F stands for whatever you want, but the VWM stands for
@@ -133,7 +131,7 @@ fvwm-perllib, FvwmPerl and dependent modules.
 fvwm-perllib, FvwmPerl i zależne moduły.
 
 %prep
-%setup -n fvwm-%{version} -q -a1 -a3
+%setup -n fvwm-%{version} -q -a1 -a2
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -178,7 +176,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d \
-	$RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle,%{_wmpropsdir}} \
+	$RPM_BUILD_ROOT%{_sysconfdir} \
 	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}/mini}
 
 install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
@@ -192,10 +190,10 @@ mv $RPM_BUILD_ROOT%{_pixmapsdir}/mini-*.xpm \
 # Conflicts with wmmaker
 mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
 
-install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
-install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
+install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/%{name}-session
+install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 install %{SOURCE5} $RPM_BUILD_ROOT%{_pixmapsdir}
-install %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
+
 touch $RPM_BUILD_ROOT%{_sysconfdir}/fvwm2.menu2
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/xpmroot.1
@@ -219,11 +217,11 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fvwm2.menu.m4
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/system.fvwm2rc
 %ghost %{_sysconfdir}/fvwm2.menu2
-%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %attr(755,root,root) %{_bindir}/[!f]*
 %attr(755,root,root) %{_bindir}/fvwm
 %attr(755,root,root) %{_bindir}/fvwm2
 %attr(755,root,root) %{_bindir}/fvwm-[!p]*
+%attr(755,root,root) %{_bindir}/fvwm-session
 %dir %{_libdir}/fvwm
 %attr(755,root,root) %{_libdir}/fvwm/Fvwm[!DGPWT]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmD[!e]*
@@ -236,7 +234,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/fvwm
 %{_datadir}/fvwm/[!p]*
 %{_datadir}/xsessions/%{name}.desktop
-%{_wmpropsdir}/fvwm2.desktop
 %{_mandir}/man1/[!Ff]*.1*
 %{_mandir}/man1/Fvwm[!DGPW]*.1*
 %{_mandir}/man1/FvwmD[!e]*.1*

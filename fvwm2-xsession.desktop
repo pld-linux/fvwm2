@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=XSession
-Exec=fvwm2
+Exec=fvwm2-session
 TryExec=fvwm2
 Name=FVWM2
 Comment=Improved version of the FVWM window manager
