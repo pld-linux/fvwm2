@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Fvwm2
+Comment=An improved version of the FVWM X-based window manager
+Comment[de]=F(?) Virtual Window Manager
+Comment[es]=Administrador de ventanas semejante al mwm
+Comment[fr]=F(?) Virtual Window Manager
+Comment[ja]=改良版 FVWM - X 用ウィンドウマネージャ
+Comment[tr]=Yaygın bir pencere denetleyicisi
+Comment[pl]=Ulepszona wersja zarządcy okien FVWM
+Comment[pt_BR]=Gerenciador de janelas semelhante ao mwm
+Comment[ru]=Виртуальный оконный менеджер F(?)
+Exec=fvwm2
+TryExec=fvwm2
+[Window Manager]
+SessionManaged=false
+# vi: encoding=utf-8
