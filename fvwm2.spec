@@ -5,7 +5,7 @@
 %bcond_without	stroke		# without mouse strokes (gestures) support
 %bcond_without	xft		# without Xft (1 or 2) support
 %bcond_with	fribidi		# with bidirectional text support
-%bcond_with	gnome		# with gnome-libs
+%bcond_with	gnome		# with gnome-libs and wm-properties
 %bcond_with	rplay		# with internal sound support (through rplay)
 #
 %include	/usr/lib/rpm/macros.perl
@@ -20,7 +20,7 @@ Summary(ru.UTF-8):	Виртуальный оконный менеджер F(?)
 Summary(tr.UTF-8):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
 Version:	2.5.28
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -194,7 +194,7 @@ mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
 
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/%{name}-session
 install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
-install %{SOURCE5} $RPM_BUILD_ROOT%{_wmpropsdir}
+%{?with_gnome:install %{SOURCE5} $RPM_BUILD_ROOT%{_wmpropsdir}}
 install %{SOURCE6} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/fvwm2.menu2
@@ -237,7 +237,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/fvwm
 %{_datadir}/fvwm/[!p]*
 %{_datadir}/xsessions/%{name}.desktop
-%{_wmpropsdir}/fvwm2.desktop
+%{?with_gnome:%{_wmpropsdir}/fvwm2.desktop}
 %{_mandir}/man1/[!Ff]*.1*
 %{_mandir}/man1/Fvwm[!DGPW]*.1*
 %{_mandir}/man1/FvwmD[!e]*.1*
