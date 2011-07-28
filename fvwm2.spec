@@ -20,7 +20,7 @@ Summary(ru.UTF-8):	Виртуальный оконный менеджер F(?)
 Summary(tr.UTF-8):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
 Version:	2.5.28
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -171,12 +171,12 @@ rm -f missing
 	--with-iconv-library=no \
 	--without-termcap-library
 
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d \
