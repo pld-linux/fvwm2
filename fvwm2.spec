@@ -20,7 +20,7 @@ Summary(ru.UTF-8):	Виртуальный оконный менеджер F(?)
 Summary(tr.UTF-8):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
 Version:	2.5.28
-Release:	7
+Release:	8
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -39,6 +39,7 @@ Patch2:		%{name}-locale_names.patch
 Patch3:		%{name}-varia.patch
 Patch4:		%{name}-libpng14.patch
 Patch5:		%{name}-xft2-link.patch
+Patch6:		%{name}-libpng15.patch
 URL:		http://www.fvwm.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -141,6 +142,7 @@ fvwm-perllib, FvwmPerl i zależne moduły.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 mv -f po/FvwmScript.sv{_SE,}.po
 mv -f po/FvwmTaskBar.sv{_SE,}.po
