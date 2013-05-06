@@ -1,0 +1,68 @@
+--- fvwm-2.6.5/libs/FRenderInit.c~	2013-05-05 08:55:11.555668251 +0200
++++ fvwm-2.6.5/libs/FRenderInit.c	2013-05-05 08:54:36.265666672 +0200
+@@ -129,7 +129,7 @@
+ 		    code <= FRenderErrorBase +
+ 		    (sizeof(error_names) / sizeof(char *)) -1)
+ 		{
+-			sprintf(msg, error_names[code - FRenderErrorBase]);
++			sprintf(msg, "%s", error_names[code - FRenderErrorBase]);
+ 			return 1;
+ 		}
+ 	}
+--- fvwm-2.6.5/modules/FvwmIconMan/functions.c~	2007-01-27 12:33:16.000000000 +0100
++++ fvwm-2.6.5/modules/FvwmIconMan/functions.c	2013-05-05 11:22:41.200960493 +0200
+@@ -535,7 +535,7 @@
+ 	else
+ 	{
+ 		sprintf(buf, "%s\n", s);
+-		ConsoleMessage(buf);
++		ConsoleMessage("%s", buf);
+ 	}
+ 
+ 	return 0;
+--- fvwm-2.6.5/fvwm/virtual.c~	2011-08-16 09:05:53.000000000 +0200
++++ fvwm-2.6.5/fvwm/virtual.c	2013-05-05 11:18:18.824282087 +0200
+@@ -2020,9 +2020,9 @@
+ 			"The command EdgeResistance with three arguments is"
+ 			" obsolete. Please use the following commands"
+ 			" instead:");
+-		fvwm_msg(OLD, "", cmd);
+-		fvwm_msg(OLD, "", stylecmd);
+-		fvwm_msg(OLD, "", stylecmd2);
++		fvwm_msg(OLD, "", "%s", cmd);
++		fvwm_msg(OLD, "", "%s", stylecmd);
++		fvwm_msg(OLD, "", "%s", stylecmd2);
+ 		execute_function(
+ 			cond_rc, exc, cmd,
+ 			FUNC_DONT_REPEAT | FUNC_DONT_EXPAND_COMMAND);
+--- fvwm-2.6.5/fvwm/builtins.c~	2012-01-18 11:22:45.000000000 +0100
++++ fvwm-2.6.5/fvwm/builtins.c	2013-05-05 11:15:10.200940313 +0200
+@@ -2682,7 +2682,7 @@
+ 			action[len-1]='\0';
+ 		}
+ 	}
+-	fvwm_msg(ECHO,"Echo",action);
++	fvwm_msg(ECHO,"Echo","%s",action);
+ 
+ 	return;
+ }
+--- fvwm-2.6.5/fvwm/move_resize.c~	2011-09-30 11:00:53.000000000 +0200
++++ fvwm-2.6.5/fvwm/move_resize.c	2013-05-05 11:12:05.544265384 +0200
+@@ -3038,7 +3038,7 @@
+ 		OLD, "CMD_SnapAttraction",
+ 		"The command SnapAttraction is obsolete. Please use the"
+ 		" following command instead:");
+-	fvwm_msg(OLD, "", cmd);
++	fvwm_msg(OLD, "","%s", cmd);
+ 	execute_function(
+ 		cond_rc, exc, cmd,
+ 		FUNC_DONT_REPEAT | FUNC_DONT_EXPAND_COMMAND);
+@@ -3060,7 +3060,7 @@
+ 		OLD, "CMD_SnapGrid",
+ 		"The command SnapGrid is obsolete. Please use the following"
+ 		" command instead:");
+-	fvwm_msg(OLD, "", cmd);
++	fvwm_msg(OLD, "","%s", cmd);
+ 	execute_function(
+ 		cond_rc, exc, cmd,
+ 		FUNC_DONT_REPEAT | FUNC_DONT_EXPAND_COMMAND);

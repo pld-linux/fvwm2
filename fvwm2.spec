@@ -7,7 +7,6 @@
 %bcond_with	fribidi		# with bidirectional text support
 %bcond_with	gnome		# with gnome-libs and wm-properties
 %bcond_with	rplay		# with internal sound support (through rplay)
-#
 %include	/usr/lib/rpm/macros.perl
 Summary:	An improved version of the FVWM X-based window manager
 Summary(de.UTF-8):	F(?) Virtual Window Manager
@@ -19,14 +18,14 @@ Summary(pt_BR.UTF-8):	Gerenciador de janelas semelhante ao mwm
 Summary(ru.UTF-8):	Виртуальный оконный менеджер F(?)
 Summary(tr.UTF-8):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
-Version:	2.5.28
-Release:	8
+Version:	2.6.5
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
-# Source0-md5:	8e11fa4f752c568b392973d13af993df
-Source1:	fvwm-2.0.46.icons.tar.gz
-# Source1-md5:	8d81420cf49442fca4bb2b61ae54eeb9
+# Source0-md5:	090ba4e0c517e8b94f71317951530f69
+Source1:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm_icons-20070101.tar.bz2
+# Source1-md5:	2ab5ee60a96830af23a43855e33afc7d
 Source2:	%{name}-system.%{name}rc.tar.gz
 # Source2-md5:	22c1f6c5ab4bd84376daa37debd3e889
 Source3:	%{name}.RunWM
@@ -37,9 +36,9 @@ Patch0:		%{name}-paths.patch
 Patch1:		FvwmPager.patch
 Patch2:		%{name}-locale_names.patch
 Patch3:		%{name}-varia.patch
-Patch4:		%{name}-libpng14.patch
 Patch5:		%{name}-xft2-link.patch
-Patch6:		%{name}-libpng15.patch
+Patch7:		%{name}-aclocal.patch
+Patch8:		%{name}-format-string.patch
 URL:		http://www.fvwm.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -55,6 +54,8 @@ BuildRequires:	rpm-perlprov
 %{?with_xft:BuildRequires:	xorg-lib-libXft-devel}
 BuildRequires:	xorg-lib-libXpm-devel
 BuildRequires:	xorg-lib-libXt-devel
+BuildRequires:	librsvg-devel
+BuildRequires:	imlib-devel
 Requires(post):	vfmg >= 0.9.95
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
@@ -140,9 +141,9 @@ fvwm-perllib, FvwmPerl i zależne moduły.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 %patch5 -p1
-%patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 mv -f po/FvwmScript.sv{_SE,}.po
 mv -f po/FvwmTaskBar.sv{_SE,}.po
@@ -160,7 +161,6 @@ rm -f missing
 	--disable-command-log \
 	%{!?with_fribidi:--disable-bidi} \
 	%{!?with_xft:--disable-xft} \
-	--enable-multibyte \
 	--enable-shape \
 	--enable-sm \
 	%{?with_gnome:--with-gnome}%{!?with_gnome:--without-gnome} \
@@ -188,9 +188,9 @@ install -d \
 install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
 install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
 
-install icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
+install fvwm_icons-20070101/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
 
-mv $RPM_BUILD_ROOT%{_pixmapsdir}/mini-*.xpm \
+mv $RPM_BUILD_ROOT%{_pixmapsdir}/mini.*.xpm \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/mini
 
 # Conflicts with wmmaker
@@ -235,12 +235,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/fvwm/FvwmGtk
 %attr(755,root,root) %{_libdir}/fvwm/FvwmP[!e]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmT[!a]*
+%attr(755,root,root) %{_libdir}/fvwm/FvwmTalk
 %attr(755,root,root) %{_libdir}/fvwm/FvwmTaskBar
 %attr(755,root,root) %{_libdir}/fvwm/FvwmW[!i]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmWinList
 %dir %{_datadir}/fvwm
 %{_datadir}/fvwm/[!p]*
 %{_datadir}/xsessions/%{name}.desktop
+%{_datadir}/locale/ar/LC_MESSAGES/FvwmScript.mo
 %{?with_gnome:%{_wmpropsdir}/fvwm2.desktop}
 %{_mandir}/man1/[!Ff]*.1*
 %{_mandir}/man1/Fvwm[!DGPW]*.1*
@@ -250,6 +252,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/FvwmWinList.1*
 %{_mandir}/man1/fvwm.1*
 %{_mandir}/man1/fvwm-[!p]*.1*
+%{_mandir}/man1/fvwm2.1*
+%{_mandir}/man1/FvwmGtk.1.*
 
 %files icons
 %defattr(644,root,root,755)
