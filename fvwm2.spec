@@ -6,7 +6,9 @@
 %bcond_without	xft		# without Xft (1 or 2) support
 %bcond_with	fribidi		# with bidirectional text support
 %bcond_with	gnome		# with gnome-libs and wm-properties
+%bcond_with	gtk		# with gtk 1.x support
 %bcond_with	rplay		# with internal sound support (through rplay)
+#
 %include	/usr/lib/rpm/macros.perl
 Summary:	An improved version of the FVWM X-based window manager
 Summary(de.UTF-8):	F(?) Virtual Window Manager
@@ -19,7 +21,7 @@ Summary(ru.UTF-8):	Виртуальный оконный менеджер F(?)
 Summary(tr.UTF-8):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
 Version:	2.6.5
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
@@ -164,6 +166,7 @@ rm -f missing
 	--enable-shape \
 	--enable-sm \
 	%{?with_gnome:--with-gnome}%{!?with_gnome:--without-gnome} \
+	%{!?with_gtk:--disable-gtk} \
 	--with-xpm-library \
 	%{!?with_rplay:--without-rplay-library} \
 	--with-stroke-library \
@@ -232,7 +235,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/fvwm
 %attr(755,root,root) %{_libdir}/fvwm/Fvwm[!DGPWT]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmD[!e]*
-%attr(755,root,root) %{_libdir}/fvwm/FvwmGtk
+%{?with_gtk:%attr(755,root,root) %{_libdir}/fvwm/FvwmGtk}
 %attr(755,root,root) %{_libdir}/fvwm/FvwmP[!e]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmT[!a]*
 %attr(755,root,root) %{_libdir}/fvwm/FvwmTalk
@@ -253,7 +256,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/fvwm.1*
 %{_mandir}/man1/fvwm-[!p]*.1*
 %{_mandir}/man1/fvwm2.1*
-%{_mandir}/man1/FvwmGtk.1.*
+%{?with_gtk:%{_mandir}/man1/FvwmGtk.1.*}
 
 %files icons
 %defattr(644,root,root,755)
@@ -265,13 +268,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fvwm-perllib
 %attr(755,root,root) %{_libdir}/fvwm/FvwmDebug
-%attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug
+%{?with_gtk:%attr(755,root,root) %{_libdir}/fvwm/FvwmGtkDebug}
 %attr(755,root,root) %{_libdir}/fvwm/FvwmPerl
 %attr(755,root,root) %{_libdir}/fvwm/FvwmTabs
 %attr(755,root,root) %{_libdir}/fvwm/FvwmWindowMenu
 %{_datadir}/fvwm/perllib
 %{_mandir}/man1/fvwm-perllib.1*
 %{_mandir}/man1/FvwmDebug.1*
-%{_mandir}/man1/FvwmGtkDebug.1*
+%{?with_gtk:%{_mandir}/man1/FvwmGtkDebug.1*}
 %{_mandir}/man1/FvwmPerl.1*
 %{_mandir}/man1/FvwmWindowMenu.1*
