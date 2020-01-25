@@ -9,7 +9,6 @@
 %bcond_with	gtk		# with gtk 1.x support
 %bcond_with	rplay		# with internal sound support (through rplay)
 #
-%include	/usr/lib/rpm/macros.perl
 Summary:	An improved version of the FVWM X-based window manager
 Summary(de.UTF-8):	F(?) Virtual Window Manager
 Summary(es.UTF-8):	Administrador de ventanas semejante al mwm
