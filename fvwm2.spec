@@ -138,13 +138,13 @@ fvwm-perllib, FvwmPerl i zależne moduły.
 
 %prep
 %setup -n fvwm-%{version} -q -a1 -a2
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch5 -p1
-%patch7 -p1
-%patch8 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
+%patch -P5 -p1
+%patch -P7 -p1
+%patch -P8 -p1
 
 mv -f po/FvwmScript.sv{_SE,}.po
 mv -f po/FvwmTaskBar.sv{_SE,}.po
