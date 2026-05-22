@@ -9,6 +9,9 @@
 %bcond_with	gtk		# with gtk 1.x support
 %bcond_with	rplay		# with internal sound support (through rplay)
 #
+# configure tests use K&R-style declarations that modern gcc rejects as errors
+%define		specflags	-std=gnu89
+
 Summary:	An improved version of the FVWM X-based window manager
 Summary(de.UTF-8):	F(?) Virtual Window Manager
 Summary(es.UTF-8):	Administrador de ventanas semejante al mwm
@@ -19,12 +22,12 @@ Summary(pt_BR.UTF-8):	Gerenciador de janelas semelhante ao mwm
 Summary(ru.UTF-8):	Виртуальный оконный менеджер F(?)
 Summary(tr.UTF-8):	Yaygın bir pencere denetleyicisi
 Name:		fvwm2
-Version:	2.6.5
-Release:	5
+Version:	2.6.6
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
-Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm-%{version}.tar.bz2
-# Source0-md5:	090ba4e0c517e8b94f71317951530f69
+Source0:	https://github.com/fvwmorg/fvwm/releases/download/version-2_6_6/fvwm-%{version}.tar.gz
+# Source0-md5:	76e8731bf02ba0b73cfbbf7628f2230f
 Source1:	ftp://ftp.fvwm.org/pub/fvwm/version-2/fvwm_icons-20070101.tar.bz2
 # Source1-md5:	2ab5ee60a96830af23a43855e33afc7d
 Source2:	%{name}-system.%{name}rc.tar.gz
@@ -39,7 +42,7 @@ Patch2:		%{name}-locale_names.patch
 Patch3:		%{name}-varia.patch
 Patch5:		%{name}-xft2-link.patch
 Patch7:		%{name}-aclocal.patch
-Patch8:		%{name}-format-string.patch
+Patch8:		%{name}-fno-common.patch
 URL:		http://www.fvwm.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -149,6 +152,9 @@ fvwm-perllib, FvwmPerl i zależne moduły.
 mv -f po/FvwmScript.sv{_SE,}.po
 mv -f po/FvwmTaskBar.sv{_SE,}.po
 mv -f po/fvwm.sv{_SE,}.po
+mv -f po/FvwmScript.zh{_CN,}.po
+mv -f po/FvwmTaskBar.zh{_CN,}.po
+mv -f po/fvwm.zh{_CN,}.po
 
 %build
 rm -f missing

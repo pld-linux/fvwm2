@@ -1,7 +1,6 @@
-diff -urN fvwm-2.5.12.vanilla/modules/FvwmPager/x_pager.c fvwm-2.5.12/modules/FvwmPager/x_pager.c
---- fvwm-2.5.12.vanilla/modules/FvwmPager/x_pager.c	2004-09-27 12:32:20.000000000 +0200
-+++ fvwm-2.5.12/modules/FvwmPager/x_pager.c	2005-02-21 21:47:10.254445160 +0100
-@@ -1078,6 +1078,29 @@
+--- fvwm-2.6.6.orig/modules/FvwmPager/x_pager.c	2016-03-19 22:14:16.000000000 +0100
++++ fvwm-2.6.6/modules/FvwmPager/x_pager.c	2026-05-21 01:38:12.786219023 +0200
+@@ -1144,6 +1144,29 @@ void DispatchEvent(XEvent *Event)
      else if((Event->xbutton.button == 1)||
  	    (Event->xbutton.button == 2))
      {
