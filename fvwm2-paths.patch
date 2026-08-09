@@ -1,18 +1,18 @@
---- fvwm-2.6.6.orig/configure.ac	2016-03-19 22:26:44.000000000 +0100
-+++ fvwm-2.6.6/configure.ac	2026-05-21 01:37:58.144487695 +0200
-@@ -104,7 +104,7 @@ AC_MSG_RESULT([assuming $PERL as perl lo
- AC_SUBST(PERL)
-
+--- fvwm-2.7.0.orig/configure.ac
++++ fvwm-2.7.0/configure.ac
+@@ -100,7 +100,7 @@
  # installation paths
--FVWM_MODULESUBDIR=/${PACKAGE}/${VERSION}
-+FVWM_MODULESUBDIR=/${PACKAGE}
- FVWM_DATASUBDIR=/${PACKAGE}
- FVWM_DOCSUBDIR=/doc/${PACKAGE}
-
-@@ -115,8 +115,8 @@ AC_ARG_ENABLE(package-subdirs,
+ transform=`echo "${program_transform_name}" | "$SED" -e 's/\\$\\$/\\$/'`
+ PPACKAGE=`echo "${PACKAGE}" | "$SED" -e "${transform}"`
+-FVWM_MODULESUBDIR=/${PPACKAGE}/${VERSION}
++FVWM_MODULESUBDIR=/${PPACKAGE}
+ FVWM_DATASUBDIR=/${PPACKAGE}
+ FVWM_DOCSUBDIR=/doc/${PPACKAGE}
+ 
+@@ -111,8 +111,8 @@
    fi], [])
-
-
+ 
+ 
 -FVWM_MODULEDIR='${libexecdir}'"$FVWM_MODULESUBDIR"
 -FVWM_DATADIR='${datadir}'"$FVWM_DATASUBDIR"
 +FVWM_MODULEDIR='${libdir}'"$FVWM_MODULESUBDIR"
@@ -20,3 +20,12 @@
  FVWM_DOCDIR='${datadir}'"$FVWM_DOCSUBDIR"
  FVWM_PERLLIBDIR='${datadir}'"$FVWM_DATASUBDIR/perllib"
  FVWM_CONFDIR='${sysconfdir}'dnl used _only_ to search for system.fvwm2rc
+@@ -1274,7 +1274,7 @@
+ AC_SUBST(FVWMSCRIPT_DOMAIN)
+ AC_SUBST(ALL_DOMAINS)
+ 
+-LOCALEDIR="$FVWM_DATADIR/locale"
++LOCALEDIR='${datadir}'"/locale"
+ with_gettext="yes"
+ problem_gettext=""
+ 

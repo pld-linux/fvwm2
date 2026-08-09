@@ -1,11 +1,11 @@
---- fvwm-2.6.5/configure.ac~	2013-05-06 18:24:49.677728463 +0200
-+++ fvwm-2.6.5/configure.ac	2013-05-06 22:23:48.570323806 +0200
-@@ -69,7 +69,7 @@
- AC_SUBST(MANPAGE_PREAMBLE)
- 
- AM_INIT_AUTOMAKE(fvwm, ${version})
+--- fvwm-2.7.0.orig/configure.ac
++++ fvwm-2.7.0/configure.ac
+@@ -19,7 +19,7 @@
+ AC_CONFIG_AUX_DIR(etc)
+ AM_INIT_AUTOMAKE([foreign subdir-objects])
+ AM_SILENT_RULES([yes])
 -AM_CONFIG_HEADER(config.h)
 +AC_CONFIG_HEADER(config.h)
  
- # check for programs needed to build html docs
- AC_CHECK_PROG(SED, sed, sed, "")
+ VERSIONINFO=""
+ 

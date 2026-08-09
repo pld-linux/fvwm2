@@ -1,6 +1,6 @@
---- fvwm-2.6.6.orig/configure.ac	2016-03-19 22:26:44.000000000 +0100
-+++ fvwm-2.6.6/configure.ac	2026-05-21 01:38:12.789552356 +0200
-@@ -727,7 +727,7 @@ if test ! x"$with_xft" = xno; then
+--- fvwm-2.7.0.orig/configure.ac
++++ fvwm-2.7.0/configure.ac
+@@ -725,7 +725,7 @@
        AC_DEFINE(HAVE_XFT2)
        AC_DEFINE(HAVE_XFT)
        AC_DEFINE(HAVE_XFT_UTF8)
