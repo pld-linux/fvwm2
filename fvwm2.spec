@@ -43,8 +43,9 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_fribidi:BuildRequires:	fribidi-devel}
 BuildRequires:	libpng-devel >= 1.4
-BuildRequires:	libxslt-progs
+BuildRequires:	librsvg-devel
 %{?with_stroke:BuildRequires:	libstroke-devel}
+BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel >= 4.2
 %{?with_rplay:BuildRequires:	rplay-devel}
@@ -52,7 +53,6 @@ BuildRequires:	rpm-perlprov
 %{?with_xft:BuildRequires:	xorg-lib-libXft-devel}
 BuildRequires:	xorg-lib-libXpm-devel
 BuildRequires:	xorg-lib-libXt-devel
-BuildRequires:	librsvg-devel
 Requires(post):	vfmg >= 0.9.95
 Requires:	fvwm2-icons = %{version}-%{release}
 Requires:	m4
@@ -174,25 +174,27 @@ install -d \
 	$RPM_BUILD_ROOT%{_sysconfdir} \
 	$RPM_BUILD_ROOT{%{_datadir}/{locale,xsessions},%{_pixmapsdir}/mini}
 
-install system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
-install fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
+cp -p system.fvwm2rc $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwm2rc
+cp -p fvwm2.menu.m4 $RPM_BUILD_ROOT%{_sysconfdir}
 
-install fvwm_icons-20070101/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
+cp -p fvwm_icons-20070101/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
 
-mv $RPM_BUILD_ROOT%{_pixmapsdir}/mini.*.xpm \
+%{__mv} $RPM_BUILD_ROOT%{_pixmapsdir}/mini.*.xpm \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/mini
 
 # Conflicts with wmmaker
-mv $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
+%{__mv} $RPM_BUILD_ROOT%{_pixmapsdir}/xv{,-fvwm}.xpm
 
-install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/fvwm2-session
-install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
-install %{SOURCE6} $RPM_BUILD_ROOT%{_pixmapsdir}
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/fvwm2-session
+cp -p %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
+cp -p %{SOURCE6} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/fvwm2.menu2
 
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/xpmroot.1
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/xpmroot.1
 echo ".so fvwm-root.1" > $RPM_BUILD_ROOT%{_mandir}/man1/xpmroot.1
+
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/sv{_SE,}
 
 %find_lang %{name} --all-name
 
@@ -224,7 +226,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/fvwm
 %{_datadir}/fvwm/[!p]*
 %{_datadir}/xsessions/%{name}.desktop
-%{_datadir}/locale/ar/LC_MESSAGES/FvwmScript.mo
 %{_mandir}/man1/[!Ff]*.1*
 %{_mandir}/man1/Fvwm[!P]*.1*
 %{_mandir}/man1/FvwmPager.1*
